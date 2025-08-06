@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('pengajuan_gocap', function (Blueprint $table) {
+            $table->integer('id_pengajuan_gocap')->autoIncrement()->primary();
+            $table->integer('id_user')->nullable();
+            $table->string('username');
+            $table->string('no_telp');
+            $table->string('jabatan');
+            $table->string('kendala');
+            $table->string('image');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('pengajuan_gocap');
+    }
+};
