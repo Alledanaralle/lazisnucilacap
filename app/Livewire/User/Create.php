@@ -23,6 +23,8 @@ class Create extends Component
     public string $password = "";
     #[Rule(['required','string'])]
     public string $alamat = "";
+    #[Rule(['required','email','unique:users'])]
+    public string $email = "";
 
     public function save(){
         $validatedData = $this->validate();
@@ -33,7 +35,8 @@ class Create extends Component
             'role' => $validatedData['role'],
             'no_telp' => $validatedData['no_telp'],
             'password' => bcrypt($validatedData['password']),
-            'alamat' => $validatedData['alamat']
+            'alamat' => $validatedData['alamat'],
+            'email' => $validatedData['email']
         ]);
         
         // dd($user);

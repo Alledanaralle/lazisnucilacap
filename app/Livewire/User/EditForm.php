@@ -22,10 +22,24 @@ class EditForm extends Component
     public string $role = "";
     #[Rule(['required', 'string'])]
     public string $no_telp = "";
-    #[Rule(['required', 'string'])]
-    public string $password = "";
+    public string $password = ""; 
     #[Rule(['required', 'string'])]
     public string $alamat = "";
+    public string $email = ""; 
+
+    protected function rules()
+    {
+        return [
+            'username' => 'required|string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'role' => 'required|string',
+            'no_telp' => 'required|string',
+            'password' => 'nullable|string', 
+            'alamat' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $this->id_user . ',id_user', 
+        ];
+    }
 
     public function clear($id_user)
     {
@@ -38,8 +52,9 @@ class EditForm extends Component
             $this->last_name = $user->last_name;
             $this->role = $user->role;
             $this->no_telp = $user->no_telp;
-            $this->password = $user->password;
+            $this->password = ''; 
             $this->alamat = $user->alamat;
+            $this->email = $user->email;
         }
         
     }
@@ -71,27 +86,33 @@ class EditForm extends Component
             $this->last_name = $user->last_name;
             $this->role = $user->role;
             $this->no_telp = $user->no_telp;
-            $this->password = $user->password;
+            $this->password = ''; 
             $this->alamat = $user->alamat;
+            $this->email = $user->email;
         }
         return $user;
     }
     public function update()
     {
-        $validatedData = $this->validate();
+        $validatedData = $this->validate(); 
 
         $user = User::find($this->id_user);
         if ($user) {
-
-            $user->update([
+            $updateData = [
                 'username' => $validatedData['username'],
                 'first_name' => $validatedData['first_name'],
                 'last_name' => $validatedData['last_name'],
                 'role' => $validatedData['role'],
                 'no_telp' => $validatedData['no_telp'],
                 'alamat' => $validatedData['alamat'],
-                'password' => bcrypt($validatedData['password']),
-            ]);
+                'email' => $validatedData['email'],
+            ];
+
+            if (!empty($validatedData['password'])) {
+                $updateData['password'] = bcrypt($validatedData['password']);
+            }
+
+            $user->update($updateData);
         }
 
         session()->flash('message', 'User updated successfully.');

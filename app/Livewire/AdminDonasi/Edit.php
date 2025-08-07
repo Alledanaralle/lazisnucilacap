@@ -6,15 +6,11 @@ use Livewire\Component;
 use App\Models\Donasi;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Rule;
-
-
+use App\Models\User;
 
 class Edit extends Component
 {
     public $id_donasi;
-
-    #[Rule('required|integer')]
-    public $id_user;
 
     #[Rule('required|integer')]
     public $jumlah_donasi;
@@ -29,10 +25,8 @@ class Edit extends Component
     public $email;
 
 
-
     public function mount($id_donasi)
     {
-
         $donasi = Donasi::find($id_donasi);
         if ($donasi) {
             $this->id_donasi = $donasi->id_donasi;
@@ -42,20 +36,38 @@ class Edit extends Component
             $this->no_telp = $donasi->no_telp;
             $this->email = $donasi->email;
         }
-        return $donasi;
-
+        
     }
 
     public function update()
     {
-        $this->validate();
+        $this->validate([
+            'jumlah_donasi' => 'required|integer',
+            'id_campaign' => 'required|integer',
+            'username' => 'required|string|exists:users,username',
+            'no_telp' => 'required|string',
+            'email' => 'nullable|email',
+        ]);
 
+        
 
-        $donasi = donasi::find($this->id_donasi);
+        $donasi = Donasi::find($this->id_donasi);
 
-        $donasi->id_user = $this->id_user;
+        $user = User::where('username', $this->username)->first();
+
+        
+
+        if (!$user) {
+            session()->flash('error', 'Username tidak ditemukan.');
+            return;
+        }
+
+         
         $donasi->jumlah_donasi = $this->jumlah_donasi;
         $donasi->id_campaign = $this->id_campaign;
+        $donasi->username = $this->username;
+        $donasi->no_telp = $this->no_telp;
+        $donasi->email = $this->email;
 
         $donasi->save();
         session()->flash('message', 'Donasi updated successfully.');
@@ -66,16 +78,15 @@ class Edit extends Component
     public function clear($id_donasi)
     {
         $this->reset();
-        $this->dispatch('refreshComponent');
         $donasi = Donasi::find($id_donasi);
         if ($donasi) {
             $this->id_donasi = $donasi->id_donasi;
-            $this->id_user = $donasi->id_user;
             $this->jumlah_donasi = $donasi->jumlah_donasi;
             $this->id_campaign = $donasi->id_campaign;
-
+            $this->username = $donasi->username;
+            $this->no_telp = $donasi->no_telp;
+            $this->email = $donasi->email;
         }
-
     }
     public function render()
     {

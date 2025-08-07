@@ -7,12 +7,8 @@ use Livewire\Attributes\Rule;
 use App\Models\Donasi;
 use App\Models\User;
 
-
 class Create extends Component
 {
-    #[Rule('nullable|integer')]
-    public $id_user;
-
     #[Rule('required|integer')]
     public $jumlah_donasi;
 
@@ -28,20 +24,34 @@ class Create extends Component
 
     public function save()
     {
-        $this->validate();
+        $this->validate([
+            'jumlah_donasi' => 'required|integer',
+            'id_campaign' => 'required|integer',
+            'username' => 'required|string|exists:users,username', // Validasi username harus ada di tabel users
+            'no_telp' => 'required|string',
+            'email' => 'nullable|email',
+        ]);
 
-        $user = User::find($this->id_user);
+        // Cari user berdasarkan username
+        $user = User::where('username', $this->username)->first();
+
+        // Pastikan user ditemukan sebelum melanjutkan
+        if (!$user) {
+            session()->flash('error', 'Username tidak ditemukan.');
+            return; // Atau tampilkan error lain
+        }
 
         $donasi = Donasi::create([
+            'id_user' => $user->id_user, // Gunakan id_user dari user yang ditemukan
             'jumlah_donasi' => $this->jumlah_donasi,
             'id_campaign' => $this->id_campaign,
             'username' => $this->username,
             'no_telp' => $this->no_telp,
             'email' => $this->email ?? null,
-            'id_transaction' => 1,
+            'id_transaction' => 1, // Pastikan ini sesuai dengan logika aplikasi Anda
         ]);
 
-        $donasi->save();
+        // $donasi->save(); // Baris ini tidak diperlukan karena sudah menggunakan create()
         session()->flash('message', 'Donasi updated successfully.');
         return redirect()->to(url()->previous());
     }
