@@ -17,7 +17,7 @@ class Index extends Component
     public function handlepilihan_infaqEdited()
     {
         // session()->flash('message', 'pilihan_infaq Updated Successfully');
-        $this->dispatch('created', ['message' => 'pilihan infaq Updated Successfully']);
+        session()->flash('message', 'Pilihan Infaq Updated Successfully');
 
     }
 
@@ -36,7 +36,7 @@ class Index extends Component
     public function handlepilihan_infaqCreated()
     {
         // session()->flash('message', 'pilihan_infaq Created Successfully');
-        $this->dispatch('created', ['message' => 'pilihan infaq Created Successfully']);
+        session()->flash('message', 'Pilihan Infaq Created Successfully');
 
     }
 

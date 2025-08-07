@@ -11,7 +11,7 @@ class Index extends Component
     #[On('petugasUpdated')]
     public function handlepetugasEdited()
     {
-        $this->dispatch('updated', ['message' => 'Petugas Updated Successfully']);
+        session()->flash('message', 'Petugas Updated Successfully');
 
     }
 
@@ -30,7 +30,7 @@ class Index extends Component
     #[On('petugasCreated')]
     public function handlepetugasCreated()
     {
-        $this->dispatch('created', ['message' => 'Petugas created Successfully']);
+        session()->flash('message', 'Petugas created Successfully');
 
 
     }

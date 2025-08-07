@@ -30,13 +30,13 @@ class Index extends Component
     #[On('kategoriCreated')]
     public function handleberitaCreated()
     {
-            $this->dispatch('created', ['message' => 'kategori  created Successfully']);
+            session()->flash('message', 'Kategori created Successfully');
     }
     #[On('kategoriUpdated')]
 
     public function handleberitaUpdated()
     {
-            $this->dispatch('updated', ['message' => 'Kategori updated Successfully']);
+            session()->flash('message', 'Kategori updated Successfully');
     }
     public function render()
     {

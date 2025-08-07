@@ -19,6 +19,7 @@ class Berita extends Model
         'tanggal',
         'id_kategori',
         'picture',
+        'slug',
     ];
 
     public function kategori()

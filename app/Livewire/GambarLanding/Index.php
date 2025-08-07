@@ -34,14 +34,14 @@ class Index extends Component
     #[On('gambarCreated')]
     public function handleberitaCreated()
     {
-            $this->dispatch('created', ['message' => 'Gambar Landing created Successfully']);
+            session()->flash('message', 'Gambar Landing created Successfully');
         // session()->flash('message', 'Gambar Landing Created Successfully');
     }
     #[On('gambarUpdated')]
 
     public function handleberitaUpdated()
     {
-            $this->dispatch('updated', ['message' => 'Gambar Landing updated Successfully']);
+            session()->flash('message', 'Gambar Landing updated Successfully');
         // session()->flash('message', 'Gambar Landing Created Successfully');
     }
 

@@ -33,14 +33,14 @@ class Index extends Component
     #[On('fileCreated')]
     public function handleberitaCreated()
     {
-        $this->dispatch('created', ['message' => 'file laporan created Successfully']);
+        session()->flash('message', 'File Laporan created Successfully');
         // session()->flash('message', 'file laporan Created Successfully');
     }
     #[On('fileUpdated')]
 
     public function handleberitaUpdated()
     {
-        $this->dispatch('updated', ['message' => 'file laporan updated Successfully']);
+        session()->flash('message', 'File Laporan updated Successfully');
         // session()->flash('message', 'file laporan Created Successfully');
     }
 

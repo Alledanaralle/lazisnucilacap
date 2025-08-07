@@ -18,7 +18,7 @@ class Index extends Component
     public function handlePostEdited()
     {
         // session()->flash('message', 'User Updated Successfully ');
-        $this->dispatch('updated', ['message' => 'User Updated Successfully']);
+        session()->flash('message', 'User Updated Successfully');
 
     }
 
@@ -37,7 +37,7 @@ class Index extends Component
     #[On('postCreated')]
     public function handlePostCreated()
     {
-        $this->dispatch('created', ['message' => 'User Created Successfully']);
+        session()->flash('message', 'User Created Successfully');
 
     }
 

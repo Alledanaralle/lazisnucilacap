@@ -17,7 +17,7 @@ class Index extends Component
     public function handlePostEdited()
     {
         // session()->flash('message', 'Campaign Updated Successfully ');
-        $this->dispatch('updated', ['message' => 'Campaign Edited Successfully']);
+        session()->flash('message', 'Campaign Edited Successfully');
 
 
     }
@@ -27,7 +27,7 @@ class Index extends Component
     public function handleCampaignCreated()
     {
         // session()->flash('message', 'Campaign Created Successfully ');
-        $this->dispatch('created', ['message' => 'Campaign Created Successfully']);
+        session()->flash('message', 'Campaign Created Successfully');
 
 
     }

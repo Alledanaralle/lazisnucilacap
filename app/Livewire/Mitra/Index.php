@@ -15,7 +15,7 @@ class Index extends Component
     #[On('mitraUpdated')]
     public function handlemitraEdited()
     {
-            $this->dispatch('updated', ['message' => 'mitra Updated Successfully']);
+            session()->flash('message', 'Mitra Updated Successfully');
         // session()->flash('message', 'mitra Updated Successfully ');
 
     }
@@ -42,7 +42,7 @@ class Index extends Component
     #[On('mitraCreated')]
     public function handlemitraCreated()
     {
-            $this->dispatch('created', ['message' => 'mitra created Successfully']);
+            session()->flash('message', 'Mitra created Successfully');
         // session()->flash('message', 'mitra Created Successfully ');
 
 

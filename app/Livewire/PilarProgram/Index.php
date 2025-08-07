@@ -11,7 +11,7 @@ class Index extends Component
     #[On('pilar_programUpdated')]
     public function handlepilar_programEdited()
     {
-        $this->dispatch('updated', ['message' => 'Pilar and Program Updated Successfully']);
+        session()->flash('message', 'Pilar and Program Updated Successfully');
         // session()->flash('message', 'misi Updated Successfully ');
 
     }
@@ -32,7 +32,7 @@ class Index extends Component
     #[On('pilar_programCreated')]
     public function handlepilar_programCreated()
     {
-        $this->dispatch('created', ['message' => 'Pilar and Program created Successfully']);
+        session()->flash('message', 'Pilar and Program created Successfully');
         // session()->flash('message', 'misi Created Successfully ');
 
 
@@ -41,7 +41,7 @@ class Index extends Component
     #[On('pilar_programUpdated')]
     public function handlepilar_programUpdated()
     {
-        $this->dispatch('updated', ['message' => 'Pilar and Program updated Successfully']);
+        session()->flash('message', 'Pilar and Program updated Successfully');
         // session()->flash('message', 'misi Created Successfully ');
 
 

@@ -89,7 +89,7 @@ class UserKonfirmasi extends Component
 
         // $this->mount();
 
-        $this->dispatch('created', ['message' => 'Formulir Berhasil di kirim']);
+        session()->flash('message', 'Formulir Berhasil di kirim');
 
         return $konfirmasi;
 

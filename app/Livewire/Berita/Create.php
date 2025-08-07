@@ -18,6 +18,7 @@ class Create extends Component
     public string $tanggal = "";
     public string $id_kategori;
     public $picture; // Pastikan ini bukan string
+    public string $slug = "";
 
     public function mount()
     {
@@ -32,6 +33,7 @@ class Create extends Component
             'tanggal' => 'required|date',
             'id_kategori' => 'required|string',
             'picture' => 'required|image|max:1024', // Validasi gambar
+            'slug' => 'required|string|unique:berita,slug',
         ];
     }
 
@@ -40,18 +42,17 @@ class Create extends Component
         // Validasi data
         $validatedData = $this->validate();
 
-        // $slug = Str::slug($validatedData['title_berita']);
-
         // Simpan file gambar dan ambil path-nya
         $path = $this->picture->store('images/berita', 'public'); // Simpan di storage/public
 
         // Simpan data ke database
         $berita = Berita::create([
-            'title_berita' => $slug,
+            'title_berita' => $validatedData['title_berita'],
             'description' => $validatedData['description'],
             'tanggal' => $validatedData['tanggal'],
             'id_kategori' => $validatedData['id_kategori'],
             'picture' => $path, // Simpan path gambar
+            'slug' => $validatedData['slug'],
         ]);
 
         session()->flash('message', 'Berita Created successfully.');

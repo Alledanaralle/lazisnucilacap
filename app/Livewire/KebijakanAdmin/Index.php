@@ -32,7 +32,7 @@ class Index extends Component
     #[On('kebijakanCreated')]
     public function handleberitaCreated()
     {
-            $this->dispatch('created', ['message' => 'Kebijakan created Successfully']);
+            session()->flash('message', 'Kebijakan created Successfully');
         // session()->flash('message', 'kebijakan Created Successfully');
     }
 

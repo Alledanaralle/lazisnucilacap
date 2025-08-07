@@ -17,7 +17,7 @@ class Index extends Component
     public function handleberitaEdited()
     {
         // session()->flash('message', 'Berita Updated Successfully');
-        $this->dispatch('created', ['message' => 'Berita Updated Successfully']);
+        session()->flash('message', 'Berita Updated Successfully');
 
     }
 
@@ -43,7 +43,7 @@ class Index extends Component
     public function handleberitaCreated()
     {
         // session()->flash('message', 'Berita Created Successfully');
-        $this->dispatch('created', ['message' => 'Berita Created Successfully']);
+        session()->flash('message', 'Berita Created Successfully');
 
     }
 

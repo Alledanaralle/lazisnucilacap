@@ -73,7 +73,7 @@ class Index extends Component
             'nominal_fitrah' => $this->nominal_fitrah2
         ]);
 
-        $this->dispatch('updated', ['message' => 'Komponen Ziwaf Berhasil di Update']);
+        session()->flash('message', 'Komponen Ziwaf Berhasil di Update');
     }
 
     public function render()

@@ -41,6 +41,15 @@
                         @enderror
                     </div>
                     <div>
+                        <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
+                        <input type="text" id="slug" wire:model="slug" name="slug"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                            placeholder="Enter news slug">
+                        @error('slug')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div>
                         <label for="tanggal" class="block text-sm font-medium text-gray-700">Tanggal</label>
                         <input type="date" id="tanggal" wire:model="tanggal" name="tanggal"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">

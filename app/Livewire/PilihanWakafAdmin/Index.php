@@ -17,7 +17,7 @@ class Index extends Component
     public function handlepilihan_wakafEdited()
     {
         // session()->flash('message', 'pilihan_wakaf Updated Successfully');
-        $this->dispatch('created', ['message' => 'pilihan wakaf Updated Successfully']);
+        session()->flash('message', 'Pilihan Wakaf Updated Successfully');
 
     }
 
@@ -36,7 +36,7 @@ class Index extends Component
     public function handlepilihan_wakafCreated()
     {
         // session()->flash('message', 'pilihan_wakaf Created Successfully');
-        $this->dispatch('created', ['message' => 'pilihan wakaf Created Successfully']);
+        session()->flash('message', 'Pilihan Wakaf Created Successfully');
 
     }
 

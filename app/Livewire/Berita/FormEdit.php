@@ -20,6 +20,7 @@ class FormEdit extends Component
     public string $tanggal = "";
     public string $id_kategori;
     public $picture; // Pastikan ini bukan string
+    public string $slug = "";
 
     protected function rules()
     {
@@ -29,6 +30,7 @@ class FormEdit extends Component
             'tanggal' => 'required|date',
             'id_kategori' => 'required|string',
             'picture' => 'nullable|image|max:1024', // Validasi gambar
+            'slug' => 'required|string|unique:berita,slug,'.$this->id_berita.',id_berita',
         ];
     }
 
@@ -43,6 +45,7 @@ class FormEdit extends Component
             $this->id_kategori = $berita->id_kategori;
             $this->picture = $berita->picture;
             $this->description = $berita->description;
+            $this->slug = $berita->slug;
         }
 
     }
@@ -73,6 +76,7 @@ class FormEdit extends Component
             $this->tanggal = $berita->tanggal;
             $this->id_kategori = $berita->id_kategori;
             $this->description = $berita->description;
+            $this->slug = $berita->slug;
         }
         $this->kategoriList = Kategori::all();
         $kategori = Kategori::find($this->id_kategori);
@@ -90,6 +94,7 @@ class FormEdit extends Component
             'tanggal' => 'required|date',
             'id_kategori' => 'required|string',
             'picture' => 'nullable|image|max:1024', // Tidak wajib jika tidak ingin mengubah gambar
+            'slug' => 'required|string|unique:berita,slug,'.$this->id_berita.',id_berita',
         ]);
 
         $berita = Berita::find($this->id_berita);
@@ -112,6 +117,7 @@ class FormEdit extends Component
                 'id_kategori' => $validatedData['id_kategori'],
                 'description' => $validatedData['description'],
                 'picture' => $berita->picture, // Update gambar baru jika ada
+                'slug' => $validatedData['slug'],
             ]);
         }
 

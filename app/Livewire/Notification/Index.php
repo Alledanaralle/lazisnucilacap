@@ -26,7 +26,7 @@ class Index extends Component
         $notification->update([
             'response' => $status
         ]);
-        $this->dispatch($event, ['message' => $status]);
+        session()->flash('message', $status);
         session()->flash('message', $status);
         return redirect()->to(url()->previous());
     }

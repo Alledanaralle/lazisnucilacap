@@ -17,7 +17,7 @@ class Index extends Component
     public function handlepilihan_qurbanEdited()
     {
         // session()->flash('message', 'pilihan_qurban Updated Successfully');
-        $this->dispatch('created', ['message' => 'pilihan qurban Updated Successfully']);
+        session()->flash('message', 'Pilihan Qurban Updated Successfully');
 
     }
 
@@ -36,7 +36,7 @@ class Index extends Component
     public function handlepilihan_qurbanCreated()
     {
         // session()->flash('message', 'pilihan_qurban Created Successfully');
-        $this->dispatch('created', ['message' => 'pilihan qurban Created Successfully']);
+        session()->flash('message', 'Pilihan Qurban Created Successfully');
 
     }
 
