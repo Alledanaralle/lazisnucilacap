@@ -17,23 +17,24 @@
         <livewire:petugas.create />
     </div>
 
-        <table class="min-w-full mt-4 bg-white border border-gray-200">
+        <div class="overflow-x-auto w-full">
+            <table class="min-w-full mt-4 bg-white border border-gray-200 datatable shadow-md rounded-lg overflow-hidden">
             <thead>
-                <tr class="items-center w-full text-white align-middle bg-gray-800">
-                    <th class="px-4 py-2 text-center">Nama</th>
-                    <th class="px-4 py-2 text-center">No Telepon</th>
-                    <th class="px-4 py-2 text-center">Bagian</th>
-                    <th class="px-4 py-2 text-center">Action</th>
+                <tr class="bg-gray-800 text-white">
+                    <th class="px-6 py-3 text-left font-semibold">Nama</th>
+                    <th class="px-6 py-3 text-left font-semibold">No Telepon</th>
+                    <th class="px-6 py-3 text-left font-semibold">Bagian</th>
+                    <th class="px-6 py-3 text-left font-semibold">Action</th>
 
                 </tr>
             </thead>
             <tbody>
                 @foreach ($petugases as $petugas)
-                    <tr class="text-center border-t" wire:key="petugas-{{ $petugas->id_petugas }}">
-                        <td class="px-4 py-2">{{ $petugas->nama }}</td>
-                        <td class="px-4 py-2">{{ $petugas->no }}</td>
-                        <td class="px-4 py-2">{{ $petugas->bagian }}</td>
-                        <td class="flex justify-center px-4 py-2 space-x-1">
+                    <tr class="bg-white border-b border-gray-200 hover:bg-gray-50" wire:key="petugas-{{ $petugas->id_petugas }}">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $petugas->nama }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $petugas->no }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $petugas->bagian }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-2">
                                 <livewire:petugas.edit :id_petugas="$petugas->id_petugas" wire:key="edit-{{ $petugas->id_petugas }}" />
                                 <button class="inline-block px-3 py-1 text-white bg-red-500 rounded hover:bg-red-700" 
                                 onclick="confirmDelete({{ $petugas->id_petugas }})">
@@ -45,6 +46,7 @@
 
             </tbody>
         </table>
+        </div>
     </div>
     <script>
         function confirmDelete(id) {

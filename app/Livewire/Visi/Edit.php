@@ -37,7 +37,8 @@ class Edit extends Component
 
         // $this->reset();
 
-        $this->dispatch('visiUpdated');
+        session()->flash('message', 'Visi updated successfully.');
+        return redirect()->to(url()->previous());
 
     }
     public function render()

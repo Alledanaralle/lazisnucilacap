@@ -126,6 +126,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -134,6 +135,32 @@
 </head>
 
 <body class="flex flex-col h-screen">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        function initializeDataTables() {
+            // Destroy existing DataTable instances before re-initializing
+            // Check if the table is already a DataTable instance
+            if ($.fn.DataTable.isDataTable('.datatable')) {
+                $('.datatable').DataTable().destroy();
+            }
+            $('.datatable').DataTable();
+        }
+
+        // Initialize DataTables on initial page load and Livewire navigation
+        document.addEventListener('livewire:navigated', () => {
+            initializeDataTables();
+        });
+
+        document.addEventListener('livewire:initialized', () => {
+            initializeDataTables();
+        });
+
+        // Listen for a custom event from Livewire components to re-initialize DataTables
+        document.addEventListener('table-updated', () => {
+            initializeDataTables();
+        });
+    </script>
     <!-- Sidebar -->
     <div id="sidebar" class="overflow-y-auto sidebar">
         <ul>
@@ -367,5 +394,15 @@
 
     @livewireScripts
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const flashMessage = document.getElementById('flash-message');
+        if (flashMessage) {
+            setTimeout(() => {
+                flashMessage.style.display = 'none';
+            }, 3000); // 3000 milidetik = 3 detik
+        }
+    });
+</script>
 
 </html>

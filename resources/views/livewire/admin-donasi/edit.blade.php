@@ -1,88 +1,94 @@
 <div x-data="{ isOpen: false }" @modal-closed.window="isOpen = false">
     <!-- Button to open the modal -->
     <button @click="isOpen=true"
-        class="inline-block px-3 py-1 text-white text-center bg-blue-500 rounded hover:bg-blue-700">Edit</button>
+        class="inline-block px-3 py-1 text-white text-center bg-blue-500 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105">Edit</button>
 
     <!-- Modal Background -->
-    <div x-show="isOpen" class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-50">
+    <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50 p-4 sm:p-6">
         <!-- Modal Content -->
-        <div class="bg-white rounded-lg shadow-lg w-1/2 max-h-[100vh] overflow-y-auto">
+        <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-90"
+            class="bg-white rounded-lg shadow-xl w-full max-w-md mx-auto max-h-[90vh] overflow-y-auto">
             <!-- Modal Header -->
-            <div class="flex justify-between items-center bg-gray-200 p-4 rounded-t-lg">
-                <h3 class="text-xl font-semibold">Edit User</h3>
+            <div class="flex justify-between items-center bg-gray-100 p-4 rounded-t-lg border-b border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-800">Edit Donasi</h3>
                 <button @click="isOpen=false" wire:click="clear({{ $id_donasi }})"
-                    class="text-gray-600 hover:text-gray-900">&times;</button>
+                    class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-md p-1">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-            <div class="p-4">
-                <form wire:submit="update">
+            <!-- Modal Body -->
+            <div class="p-6">
+                <form wire:submit="update" class="space-y-4">
                     <input type="hidden" wire:model="id_donasi">
-                    <div class="mb-4">
-                        <label for="username" class="block text-sm font-medium text-gray-700">username</label>
-                        <input type="text" id="username" wire:model="username" name="username"
-                            class="mt-1 block w-full rounded-md border-gray-700 shadow-2xl focus:border-indigo-500 bg-gray-200 py-1 sm:text-sm">
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                        <input type="text" id="username" wire:model="username"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Enter username">
                         @error('username')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
-                        <label for="no_telp" class="block text-sm font-medium text-gray-700">no_telp</label>
-                        <input type="text" id="no_telp" wire:model="no_telp" name="no_telp"
-                            class="mt-1 block w-full rounded-md border-gray-700 shadow-2xl focus:border-indigo-500 bg-gray-200 py-1 sm:text-sm">
+                    <div>
+                        <label for="no_telp" class="block text-sm font-medium text-gray-700">No. Telepon</label>
+                        <input type="text" id="no_telp" wire:model="no_telp"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Enter phone number">
                         @error('no_telp')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
-                        <label for="email" class="block text-sm font-medium text-gray-700">email</label>
-                        <input type="text" id="email" wire:model="email" name="email"
-                            class="mt-1 block w-full rounded-md border-gray-700 shadow-2xl focus:border-indigo-500 bg-gray-200 py-1 sm:text-sm">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="email" wire:model="email"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Enter email address">
                         @error('email')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
+                    <div>
                         <label for="jumlah_donasi" class="block text-sm font-medium text-gray-700">Jumlah Donasi</label>
-                        <input wire:model="jumlah_donasi"
-                            class="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Update your text here..."></input>
+                        <input type="text" id="jumlah_donasi" wire:model="jumlah_donasi"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Enter donation amount">
                         @error('jumlah_donasi')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
-                        <label for="id_campaign" class="block text-sm font-medium text-gray-700">Id Campaign</label>
-                        <input wire:model="id_campaign"
-                            class="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Update your text here..."></input>
+                    <div>
+                        <label for="id_campaign" class="block text-sm font-medium text-gray-700">ID Campaign</label>
+                        <input type="text" id="id_campaign" wire:model="id_campaign"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Enter campaign ID">
                         @error('id_campaign')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <!-- Submit Button inside the form -->
-                    <div class="flex justify-between p-4 bg-gray-200 rounded-b-lg">
-                        <div wire:loading>
-                            <div class="spinner"></div>
-                            {{-- <div class="spinner-text">Uploading...</div> --}}
-                        </div>
-                        <div wire:loading.remove>
-                            <!-- This content will be hidden while a Livewire request is processing -->
-                        </div>
-                        <div>
-                            <button type="button" @click="isOpen = false" wire:click="clear({{ $id_campaign }})"
-                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Close</button>
-                            {{-- <button type="submit"
-                                class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button> --}}
-                            <button type="submit"  @click="isOpen = false" wire:loading.attr="disabled"
-                                wire:loading.class="bg-blue-300 cursor-not-allowed"
-                                class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300">
-                                Update
-                            </button>
-
-                        </div>
+                    <!-- Modal Footer -->
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                        <button type="button" @click="isOpen = false" wire:click="clear({{ $id_donasi }})"
+                            class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300 ease-in-out">
+                            Cancel
+                        </button>
+                        <button type="submit" @click="isOpen = false" wire:loading.attr="disabled"
+                            wire:loading.class="bg-blue-300 cursor-not-allowed"
+                            class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                            Update
+                        </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

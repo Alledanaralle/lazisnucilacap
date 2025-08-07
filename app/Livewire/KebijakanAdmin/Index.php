@@ -23,9 +23,8 @@ class Index extends Component
 
             // Hapus data berita
             $Kebijakan->delete();
-
-            // Tampilkan pesan sukses
-            $this->dispatch('destroyed', ['message' => 'Kebijakan deleted Successfully']);
+            session()->flash('message', 'Kebijakan deleted Successfully.');
+            return redirect()->to(url()->previous());
             // session()->flash('message', 'Kebijakan destroyed successfully.');
         }
     }

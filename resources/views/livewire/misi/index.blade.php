@@ -17,10 +17,11 @@
         <livewire:misi.create />
     </div>
 
-        <table class="w-full mt-4 bg-white border border-gray-200">
+        <div class="overflow-x-auto w-full">
+            <table class="w-full mt-4 bg-white border border-gray-200 datatable shadow-md rounded-lg overflow-hidden">
             <thead>
-                <tr class="items-center w-full text-white align-middle bg-gray-800">
-                    <th class="px-4 py-2 text-center">Misi</th>
+                <tr class="bg-gray-800 text-white">
+                    <th class="px-6 py-3 text-left font-semibold">Misi</th>
                     <th class="px-4 py-2 text-center">Action</th>
 
                 </tr>
@@ -29,7 +30,7 @@
                 @foreach ($misis as $Misi)
                     <tr class="flex justify-between border-t" wire:key="visi-{{ $Misi->id_misi }}">
                         <td class="flex px-4 py-2 ">
-                            <div class="flex-col justify-between">
+                            <div class="flex-row flex justify-between">
                                 <a wire:click="moveUp({{ $Misi->id_misi }})" class="{{ $Misi->order == 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer' }}" wire:key="up-{{ $Misi->id_misi }}">
                                     🔼
                                 </a>
@@ -53,6 +54,7 @@
             </tbody>
             
         </table>
+        </div>
     </div>
     <script>
         function confirmDelete(id) {

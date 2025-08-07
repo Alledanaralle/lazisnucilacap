@@ -32,11 +32,8 @@ class Index extends Component
 
             // Hapus data berita
             $berita->delete();
-
-            // Tampilkan pesan sukses
-            // session()->flash('message', 'Berita destroyed successfully.');
-        // $this->dispatch('created', ['message' => 'Berita Created Successfully']);
-        $this->dispatch('created', ['message' => 'Berita Deleted Successfully']);
+            session()->flash('message', 'Berita Deleted Successfully.');
+            return redirect()->to(url()->previous());
 
 
         }

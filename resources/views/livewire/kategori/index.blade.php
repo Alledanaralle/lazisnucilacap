@@ -16,25 +16,26 @@
         <!-- Modal Form -->
         <livewire:kategori.create />
     </div>
-    <table class="min-w-full mt-4 bg-white border border-gray-200 ">
+    <div class="overflow-x-auto w-full">
+        <table class="min-w-full mt-4 bg-white border border-gray-200 datatable shadow-md rounded-lg overflow-hidden">
         <thead>
-            <tr class="items-center w-full text-white align-middle bg-gray-800">
-                <th class="px-4 py-2">Image</th>
-                <th class="px-4 py-2">Kategori</th>
-                <th class="px-16 py-2">Action</th>
+            <tr class="w-full text-white bg-gray-800">
+                <th class="px-6 py-3 text-left font-semibold">Image</th>
+                <th class="px-6 py-3 text-left font-semibold">Kategori</th>
+                <th class="px-6 py-3 text-left font-semibold">Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($kategoris as $kategori)
-                <tr class="border-t" wire:key="kategori-{{ $kategori->id }}">
-                    <td class="px-4 py-2">
+                <tr class="bg-white border-b border-gray-200 hover:bg-gray-50" wire:key="kategori-{{ $kategori->id }}">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         <img src="{{ asset('storage/images/kategori/' . $kategori->image) }}" alt="Main Picture"
                             class="block w-1/2 mx-auto mt-2 mb-2">
                     </td>
-                    <td class="px-4 py-2">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <p>{{$kategori->nama_kategori}}</p>
                     </td>
-                    <td class="px-4 py-2">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-2">
                         <div class="flex items-center">
                             <livewire:kategori.edit :id="$kategori->id" wire:key="edit-{{ $kategori->id }}"/>
                             <button
@@ -47,6 +48,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
     <!-- Pagination Controls -->
     <div class="py-8 mt-4 text-center">
         {{ $kategoris->links('pagination::tailwind') }}

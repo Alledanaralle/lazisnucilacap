@@ -57,9 +57,8 @@ class Edit extends Component
         // Reset the form inputs
         // dd($validatedData);
         // Dispatch the event for the updated image
-        $this->dispatch('petugasUpdated');
-
-        return $this->petugas;
+        session()->flash('message', 'Petugas updated successfully.');
+        return redirect()->to(url()->previous());
     }
 
     public function render()

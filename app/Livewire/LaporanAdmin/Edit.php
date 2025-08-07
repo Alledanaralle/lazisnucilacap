@@ -58,9 +58,8 @@ class Edit extends Component
         // Reset the form inputs
 
         // Dispatch the event for the updated image
-        $this->dispatch('fileUpdated');
-
-        return $this->laporan;
+        session()->flash('message', 'Laporan updated successfully.');
+        return redirect()->to(url()->previous());
     }
 
     public function render()

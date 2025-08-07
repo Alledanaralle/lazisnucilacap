@@ -59,10 +59,7 @@ class Edit extends Component
 
         $donasi->save();
         session()->flash('message', 'Donasi updated successfully.');
-        $this->clear($this->id_donasi);
-        $this->reset();
-        $this->dispatch('postUpdated');
-        return $donasi;
+        return redirect()->to(url()->previous());
     }
 
 

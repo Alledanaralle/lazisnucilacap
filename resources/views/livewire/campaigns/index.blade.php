@@ -6,10 +6,9 @@
                 <input id="search" type="text" placeholder="Search Campaigns..." wire:model.live="search"
                     class="px-4 py-2 border-b border-gray-300 w-full" />
                 @if ($search)
-                    <button type="button" class="absolute top-0 right-0 mt-2 mr-4"
-                        onclick="document.getElementById('search').value = ''; 
-                                 var element = document.getElementById('search'); 
-                                 element.dispatchEvent(new Event('input'));">
+                    <button type="button" class="absolute top-0 right-0 mt-2 mr-4" onclick="document.getElementById('search').value = '';                                    
+                                     var element = document.getElementById('search');                                 
+                                      element.dispatchEvent(new Event('input'));">
                         &#10005;
                     </button>
                 @endif
@@ -56,7 +55,7 @@
                     </div>
                 @elseif($this->kategori !== 'all' && $campaigns && $campaigns->isEmpty())
                     <div class="px-4 py-20  text-center">
-                        Campaign Yang Dicari Tidak Ditemukan pada Kategori {{ $this->kategori }} 
+                        Campaign Yang Dicari Tidak Ditemukan pada Kategori {{ $this->kategori }}
                     </div>
                 @else
                     @foreach ($campaigns as $campaign)
@@ -92,19 +91,18 @@
 </div>
 
 <script>
-    document.getElementById('openModal').addEventListener('click', function(event) {
+    document.getElementById('openModal').addEventListener('click', function (event) {
         event.preventDefault();
         document.getElementById('modalOverlay').classList.remove('hidden');
     });
 
-    document.getElementById('closeModal').addEventListener('click', function() {
+    document.getElementById('closeModal').addEventListener('click', function () {
         document.getElementById('modalOverlay').classList.add('hidden');
     });
 
-    document.getElementById('modalOverlay').addEventListener('click', function(event) {
+    document.getElementById('modalOverlay').addEventListener('click', function (event) {
         if (event.target === event.currentTarget) {
             document.getElementById('modalOverlay').classList.add('hidden');
         }
     });
 </script>
-

@@ -1,52 +1,68 @@
 <div x-data="{ isOpen: false }" @modal-closed.window="isOpen = false">
     <!-- Button to open the modal -->
     <button @click="isOpen=true"
-        class="inline-block px-3 py-1 text-center text-white bg-blue-500 rounded hover:bg-blue-700">Edit</button>
+        class="inline-block px-3 py-1 text-center text-white bg-blue-500 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105">Edit</button>
 
     <!-- Modal Background -->
-    <div x-show="isOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-75">
+    <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50 p-4 sm:p-6">
         <!-- Modal Content -->
-        <div class="bg-white rounded-lg shadow-lg w-1/2 max-h-[100vh] overflow-y-auto">
+        <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-90"
+            class="bg-white rounded-lg shadow-xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-y-auto">
             <!-- Modal Header -->
-            <div class="flex items-center justify-between p-4 bg-gray-200 rounded-t-lg">
-                <h3 class="text-xl font-semibold">Edit User</h3>
+            <div class="flex justify-between items-center bg-gray-100 p-4 rounded-t-lg border-b border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-800">Edit Campaign</h3>
                 <button @click="isOpen=false" wire:click="clear({{ $id_campaign }})"
-                    class="text-gray-600 hover:text-gray-900">&times;</button>
+                    class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-md p-1">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-            <div class="p-4">
-                <form wire:submit="update">
+            <!-- Modal Body -->
+            <div class="p-6">
+                <form wire:submit="update" class="space-y-4">
                     <input type="hidden" wire:model="id_campaign">
-                    <div class="mb-4">
+                    <div>
                         <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
                         <input type="text" id="title" wire:model="title" name="title"
-                            class="block w-full py-1 mt-1 bg-gray-200 border-gray-700 rounded-md shadow-2xl focus:border-indigo-500 sm:text-sm">
-                        <small><span class="text-black">Tambahakan ! dalam title jika urgent</span></small>
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Enter campaign title">
+                        <small class="text-gray-500">Tambahkan ! dalam title jika urgent</small>
                         @error('title')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
+                    <div>
                         <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
                         <input type="text" id="slug" wire:model="slug" name="slug"
-                            class="block w-full py-1 mt-1 bg-gray-200 border-gray-700 rounded-md shadow-2xl focus:border-indigo-500 sm:text-sm">
-                            @error('slug')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Enter campaign slug">
+                        @error('slug')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
+                    <div>
                         <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                        <small><span class="text-black">[img1] akan diganti dengan Image 1 dan seterusnya</span></small>
-                        <textarea wire:model="description" rows="10"
-                            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        <small class="text-gray-500">[img1] akan diganti dengan Image 1 dan seterusnya</small>
+                        <textarea wire:model="description" rows="5"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             placeholder="Update your text here..."></textarea>
                         @error('description')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
+                    <div>
                         <label for="id_kategori" class="block text-sm font-medium text-gray-700">Kategori</label>
                         <select id="id_kategori" wire:model="id_kategori" name="id_kategori"
-                            class="block w-full py-2 mt-1 bg-gray-200 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 sm:text-sm">
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             <option value="" selected>Select</option>
 
                             <!-- Dynamically populate the select options from the kategoriList array -->
@@ -60,79 +76,84 @@
                         @enderror
                     </div>
 
-                    <div class="mb-4">
+                    <div>
                         <label for="goal" class="block text-sm font-medium text-gray-700">Goal</label>
-                        <!-- Visible Input for formatting -->
                         <input type="text" id="goal_display" name="goal_display"
-                            class="block w-full py-1 mt-1 bg-gray-200 border-gray-700 rounded-md shadow-2xl focus:border-indigo-500 sm:text-sm"
-                            oninput="formatMoney(this, 'goal_hidden')" value="{{ number_format($goal, 0, ',', '.') }}">
-
-                        <!-- Hidden Input for Livewire to store pure numeric value -->
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            oninput="formatMoney(this, 'goal_hidden')" value="{{ number_format($goal, 0, ',', '.') }}"
+                            placeholder="Enter goal amount">
                         <input type="hidden" id="goal_hidden" wire:model.lazy="goal">
-
                         @error('goal')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <div class="mb-4">
-                        <label for="start_date" class="block text-sm font-medium text-gray-700">Start date</label>
+                    <div>
+                        <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date</label>
                         <input type="date" id="start_date" wire:model="start_date" name="start_date"
-                            class="block w-full py-2 mt-1 bg-gray-200 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 sm:text-sm">
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         @error('start_date')
                             <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
-                        <label for="end_date" class="block text-sm font-medium text-gray-700">End date</label>
+                    <div>
+                        <label for="end_date" class="block text-sm font-medium text-gray-700">End Date</label>
                         <input type="date" id="end_date" wire:model="end_date" name="end_date"
-                            class="block w-full py-2 mt-1 bg-gray-200 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 sm:text-sm">
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                         @error('end_date')
                             <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <div class="mb-4">
+                    <div>
                         <label for="min_donation" class="block text-sm font-medium text-gray-700">Min Donation</label>
-                        <!-- Visible Input for formatting -->
                         <input type="text" id="min_donation_display" name="min_donation_display"
-                            class="block w-full py-1 mt-1 bg-gray-200 border-gray-700 rounded-md shadow-2xl focus:border-indigo-500 sm:text-sm"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             oninput="formatMoney(this, 'min_donation_hidden')"
-                            value="{{ number_format($min_donation, 0, ',', '.') }}">
-
-                        <!-- Hidden Input for Livewire to store pure numeric value -->
+                            value="{{ number_format($min_donation, 0, ',', '.') }}"
+                            placeholder="Enter minimum donation amount">
                         <input type="hidden" id="min_donation_hidden" wire:model.lazy="min_donation">
-
                         @error('min_donation')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <div class="mb-4">
+                    <div>
                         <label for="lokasi" class="block text-sm font-medium text-gray-700">Lokasi</label>
                         <input type="text" id="lokasi" wire:model="lokasi" name="lokasi"
-                            class="block w-full py-1 mt-1 bg-gray-200 border-gray-700 rounded-md shadow-2xl focus:border-indigo-500 sm:text-sm">
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Enter location">
                         @error('lokasi')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
 
 
-                    <div class="mb-4">
+                    <div>
                         <label for="edit_main_picture" class="block text-sm font-medium text-gray-700">Image 1</label>
                         <input type="file" id="edit_main_picture"
-                            class="w-full p-2 border border-gray-300 rounded-lg" wire:model="main_picture">
+                            class="mt-1 block w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-md file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-blue-50 file:text-blue-700
+                            hover:file:bg-blue-100" wire:model="main_picture">
                         @error('main_picture')
                             <span class="text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <!-- For Second Image -->
-                    <div class="mb-4">
+                    <div>
                         <label for="edit_second_picture" class="block text-sm font-medium text-gray-700">Image
                             2</label>
                         <input type="file" id="edit_second_picture"
-                            class="w-full p-2 border border-gray-300 rounded-lg" wire:model="second_picture">
+                            class="mt-1 block w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-md file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-blue-50 file:text-blue-700
+                            hover:file:bg-blue-100" wire:model="second_picture">
                         @error('second_picture')
                             <span class="text-red-600">{{ $message }}</span>
                         @enderror
@@ -143,10 +164,15 @@
                         @endif
                     </div>
 
-                    <div class="mb-4">
+                    <div>
                         <label for="edit_last_picture" class="block text-sm font-medium text-gray-700">Image 3</label>
                         <input type="file" id="edit_last_picture"
-                            class="w-full p-2 border border-gray-300 rounded-lg" wire:model="last_picture">
+                            class="mt-1 block w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-md file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-blue-50 file:text-blue-700
+                            hover:file:bg-blue-100" wire:model="last_picture">
                         @error('last_picture')
                             <span class="text-red-600">{{ $message }}</span>
                         @enderror
@@ -156,54 +182,40 @@
                                 class="mt-2 text-red-500 hover:text-red-700">Delete Last Image</button>
                         @endif
                     </div>
-                    <div class="flex justify-between p-4 bg-gray-200 rounded-b-lg">
-                        <div wire:loading>
-                            <div class="spinner"></div>
-                        </div>
-                        <div wire:loading.remove>
-                        </div>
-                        <div>
-                            <button type="button" @click="isOpen = false" wire:click="clear({{ $id_campaign }})"
-                                class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700">Close</button>
-                            <button type="submit" wire:loading.attr="disabled"
-                                wire:loading.class="bg-blue-300 cursor-not-allowed"
-                                class="px-4 py-2 ml-2 font-bold text-white transition-all duration-300 bg-blue-500 rounded hover:bg-blue-700">
-                                Update
-                            </button>
-
-                        </div>
+                    <!-- Modal Footer -->
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                        <button type="button" @click="isOpen = false" wire:click="clear({{ $id_campaign }})"
+                            class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300 ease-in-out">
+                            Cancel
+                        </button>
+                        <button type="submit" wire:loading.attr="disabled"
+                            wire:loading.class="bg-blue-300 cursor-not-allowed"
+                            class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                            Update
+                        </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
 </div>
 <script>
     function formatMoney(input, hiddenInputId) {
-        // Get the raw value without formatting
-        let value = input.value.replace(/[^\d]/g, ''); // Remove all non-numeric characters
-
-        // Format the value with dots for thousands
+        let value = input.value.replace(/[^\d]/g, '');
         let formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
-        // Update the visible input with the formatted value
         input.value = formattedValue;
-
-        // Update the hidden input with the numeric value for Livewire
         let hiddenInput = document.getElementById(hiddenInputId);
         hiddenInput.value = value;
-
-        // Dispatch an input event to ensure Livewire sees the change
         hiddenInput.dispatchEvent(new Event('input'));
     }
 
-    function formatOnLoad() {
-        const goalInput = document.getElementById('goal_display');
-        if (goalInput.value) {
-            formatMoney(goalInput, 'goal_hidden');
-        }
-    }
+    document.addEventListener('DOMContentLoaded', function () {
+        // Re-initialize Select2 on modal open or Livewire update
+        $('#id_kategori').select2();
 
-    document.addEventListener('DOMContentLoaded', formatOnLoad);
+        $('#id_kategori').on('change', function (e) {
+            var data = $('#id_kategori').select2("val");
+            @this.set('id_kategori', data);
+        });
+    });
 </script>

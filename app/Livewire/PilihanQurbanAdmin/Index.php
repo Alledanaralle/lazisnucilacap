@@ -26,11 +26,8 @@ class Index extends Component
         $pilihan_qurban = pilihan_qurban::find($id);
         // Hapus data pilihan_qurban
         $pilihan_qurban->delete();
-
-        // Tampilkan pesan sukses
-        // session()->flash('message', 'pilihan_qurban destroyed successfully.');
-        // $this->dispatch('created', ['message' => 'pilihan_qurban Created Successfully']);
-        $this->dispatch('created', ['message' => 'pilihan qurban Deleted Successfully']);
+        session()->flash('message', 'Pilihan Qurban Deleted Successfully.');
+        return redirect()->to(url()->previous());
 
 
     }

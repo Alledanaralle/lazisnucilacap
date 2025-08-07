@@ -26,11 +26,8 @@ class Index extends Component
         $pilihan_infaq = pilihan_infaq::find($id);
         // Hapus data pilihan_infaq
         $pilihan_infaq->delete();
-
-        // Tampilkan pesan sukses
-        // session()->flash('message', 'pilihan_infaq destroyed successfully.');
-        // $this->dispatch('created', ['message' => 'pilihan_infaq Created Successfully']);
-        $this->dispatch('created', ['message' => 'pilihan infaq Deleted Successfully']);
+        session()->flash('message', 'Pilihan Infaq Deleted Successfully.');
+        return redirect()->to(url()->previous());
 
 
     }

@@ -36,11 +36,8 @@ class Create extends Component
             'nama_kategori' => $this->nama_kategori,
         ]);
     
-        $this->reset();
-    
-        $this->dispatch('kategoriCreated');
-    
-        return $kategori;
+        session()->flash('message', 'Kategori Created successfully.');
+        return redirect()->to(url()->previous());
     }
     
     public function render()

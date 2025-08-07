@@ -29,11 +29,8 @@ class Create extends Component
         ]);
         misi::reorder();
 
-        $this->reset();
-
-        $this->dispatch('misiCreated');
-
-        return $Misi;
+        session()->flash('message', 'Misi Created successfully.');
+        return redirect()->to(url()->previous());
 
     }
     public function render()

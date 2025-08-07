@@ -85,9 +85,8 @@ class Edit extends Component
         }
 
         // Reset form dan dispatch event
-        $this->clear($this->id());
-        $this->dispatch('pilihan_qurbanUpdated');
-        return $pilihan_qurban;
+        session()->flash('message', 'Pilihan Qurban updated successfully.');
+        return redirect()->to(url()->previous());
     }
 
     public function render()

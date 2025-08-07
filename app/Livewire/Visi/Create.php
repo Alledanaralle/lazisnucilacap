@@ -28,12 +28,8 @@ class Create extends Component
             'order' => visi::max('order') + 1,
         ]);
 
-        $this->reset();
-
-        $this->dispatch('visiCreated');
-        visi::reorder();
-
-        return $Visi;
+        session()->flash('message', 'Visi Created successfully.');
+        return redirect()->to(url()->previous());
 
     }
     public function render()

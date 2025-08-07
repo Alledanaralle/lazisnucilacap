@@ -13,10 +13,16 @@ class VisiMisi extends Component
         $this->visis = visi::query()
             ->latest()
             ->get();
+        // Debugging: Check if visis data is fetched
+        $this->visis = visi::query()
+            ->latest()
+            ->get();
 
         $this->misis = misi::query()
             ->latest()
             ->get();
+        // Debugging: Check if misis data is fetched
+        // dd($this->misis);
     }
 
     public function render()

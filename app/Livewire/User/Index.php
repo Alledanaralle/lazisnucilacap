@@ -27,7 +27,8 @@ class Index extends Component
         $user = User::find($id_user);
         if ($user) {
             $user->delete();
-        $this->dispatch('destroyed', ['message' => 'User Deleted Successfully']);
+            session()->flash('message', 'User Deleted Successfully.');
+            return redirect()->to(url()->previous());
         }
 
 

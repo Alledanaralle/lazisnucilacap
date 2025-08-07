@@ -3,8 +3,6 @@
     <div class="flex flex-col w-full min-h-screen bg-white shadow-md md:w-[414px]">
         <div class="flex">
             <livewire:user-berita.kategori :nama_kategori="$this->kategori" />
-            <input type="text" placeholder="Search Berita..." wire:model.live="search"
-                class="w-full px-4 py-2 border border-gray-300" />
         </div>
 
         <div class="flex flex-col mb-20">

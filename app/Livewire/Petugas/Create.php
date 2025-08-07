@@ -42,11 +42,8 @@ class Create extends Component
             'bagian' => $validatedData['bagian'],
         ]);
 
-        $this->reset();
-
-        $this->dispatch('petugasCreated');
-
-        return $petugases;
+        session()->flash('message', 'Petugas Created successfully.');
+        return redirect()->to(url()->previous());
 
     }
 

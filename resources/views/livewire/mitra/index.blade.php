@@ -14,26 +14,26 @@
         @endif
     </div>
     <!-- Modal Form -->
-        <input type="text" wire:model.live="search" placeholder="   Search" class="ml-4 border border-gray-300 rounded-lg">
         <livewire:mitra.create />
     </div>
 
-        <table class="min-w-full mt-4 bg-white border border-gray-200">
+        <div class="overflow-x-auto w-full">
+            <table class="min-w-full mt-4 bg-white border border-gray-200 datatable shadow-md rounded-lg overflow-hidden">
             <thead>
-                <tr class="items-center w-full text-white align-middle bg-gray-800">
-                    <th class="px-4 py-2 text-center">Nama</th>
-                    <th class="px-4 py-2 text-center">Logo</th>
-                    <th class="px-4 py-2 text-center">Action</th>
+                <tr class="bg-gray-800 text-white">
+                    <th class="px-6 py-3 text-left font-semibold">Nama</th>
+                    <th class="px-6 py-3 text-left font-semibold">Logo</th>
+                    <th class="px-6 py-3 text-left font-semibold">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($mitras as $mitra)
-                    <tr class="border-t" wire:key="mitra-{{ $mitra->id_partner }}">
-                        <td class="flex justify-center px-4 py-2 break-words">{{ $mitra->partner_name }}</td>
-                        <td class="px-4 py-2">
+                    <tr class="bg-white border-b border-gray-200 hover:bg-gray-50" wire:key="mitra-{{ $mitra->id_partner }}">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $mitra->partner_name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             <img src="{{ asset('storage/' . $mitra->logo) }}" alt="Main Picture" class="block w-24 mx-auto mt-2 mb-2">
                         </td>
-                        <td class="flex justify-center px-4 py-2 space-x-1">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-2">
                             <livewire:mitra.edit :id_partner="$mitra->id_partner" wire:key="edit-{{ $mitra->id_partner }}" />
                             <button class="inline-block px-3 py-1 text-white bg-red-500 rounded hover:bg-red-700" 
                                 onclick="confirmDelete({{ $mitra->id_partner }})">
@@ -45,6 +45,7 @@
 
             </tbody>
         </table>
+        </div>
         <!-- Pagination Controls -->
         <div class="py-8 mt-4 text-center">
             {{ $mitras->links('pagination::tailwind') }}

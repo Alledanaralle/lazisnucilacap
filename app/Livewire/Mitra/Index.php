@@ -31,9 +31,8 @@ class Index extends Component
 
             // Hapus data mitra
             $mitra->delete();
-
-            // Tampilkan pesan sukses
-            $this->dispatch('destroyed', ['message' => 'mitra deleted Successfully']);
+            session()->flash('message', 'Mitra deleted Successfully.');
+            return redirect()->to(url()->previous());
             // session()->flash('message', 'mitra destroyed successfully.');
 
         }

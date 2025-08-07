@@ -39,11 +39,8 @@ class Create extends Component
             'harga' => $validatedData['harga2'],
         ]);
 
-        $this->reset();
-
-        $this->dispatch('pilihan_qurbanCreated');
-
-        return $pilihan_qurban;
+        session()->flash('message', 'Pilihan Qurban Created successfully.');
+        return redirect()->to(url()->previous());
     }
 
     public function render()

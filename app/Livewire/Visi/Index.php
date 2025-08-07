@@ -21,7 +21,8 @@ class Index extends Component
         $Visi = visi::find($id_visi);
         $Visi->delete();
         visi::reorder();
-        $this->dispatch('destroyed', ['message' => 'visi deleted Successfully']);
+        session()->flash('message', 'Visi deleted Successfully.');
+        return redirect()->to(url()->previous());
         // session()->flash('message', 'visi destroyed successfully.');
 
     }

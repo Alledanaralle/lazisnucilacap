@@ -16,11 +16,12 @@
         <!-- Modal Form -->
         <livewire:laporan-admin.create />
     </div>
-    <table class="min-w-full mt-4 bg-white border border-gray-200 ">
+    <div class="overflow-x-auto w-full">
+        <table class="min-w-full mt-4 bg-white border border-gray-200 datatable shadow-md rounded-lg overflow-hidden">
         <thead>
-            <tr class="items-center w-full text-white align-middle bg-gray-800">
-                <th class="px-4 py-2">Nama File</th>
-                <th class="px-4 py-2">Action</th>
+            <tr class="w-full text-white bg-gray-800">
+                <th class="px-6 py-3 text-left font-semibold">Nama File</th>
+                <th class="px-6 py-3 text-left font-semibold">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -42,6 +43,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
     <!-- Pagination Controls -->
     <div class="py-8 mt-4 text-center">
         {{ $laporans->links('pagination::tailwind') }}

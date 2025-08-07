@@ -43,9 +43,7 @@ class Create extends Component
 
         $donasi->save();
         session()->flash('message', 'Donasi updated successfully.');
-        $this->reset();
-        $this->dispatch('postUpdated');
-        return $donasi;
+        return redirect()->to(url()->previous());
     }
     public function render()
     {

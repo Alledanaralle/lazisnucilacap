@@ -21,9 +21,8 @@ class Index extends Component
 
         // Hapus data misi
         $petugases->delete();
-
-        // Tampilkan pesan sukses
-        $this->dispatch('destroyed', ['message' => 'Petugas deleted Successfully']);
+        session()->flash('message', 'Petugas deleted Successfully.');
+        return redirect()->to(url()->previous());
 
     }
 

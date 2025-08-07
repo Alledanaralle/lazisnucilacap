@@ -44,9 +44,8 @@ class Edit extends Component
         ]);
         misi::reorder();
 
-        $this->clear($this->id_misi);
-
-        $this->dispatch('misiUpdated');
+        session()->flash('message', 'Misi updated successfully.');
+        return redirect()->to(url()->previous());
 
     }
     public function render()

@@ -1,99 +1,119 @@
 <div x-data="{ isOpen: false }" @modal-closed.window="isOpen = false">
-    <button @click="isOpen=true" 
-        class="inline-block px-3 py-1 text-white bg-blue-500 rounded hover:bg-blue-700">Edit</button>
+    <!-- Button to open the modal -->
+    <button @click="isOpen=true"
+        class="inline-block px-3 py-1 text-white text-center bg-blue-500 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105">Edit</button>
 
-        <div>
-    <div x-show="isOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-75">
-        <div class="w-1/2 bg-white rounded-lg shadow-lg max-h-[100vh] overflow-y-auto">
-            <div class="flex items-center justify-between p-4 bg-gray-200 rounded-t-lg">
-                <h3 class="text-xl font-semibold">Edit Pilar dan Program</h3>
-                <div @click="isOpen=false" class="px-3 rounded-sm shadow hover:bg-red-500">
-                    <button class="text-gray-900">&times;</button>
-                </div>
+    <!-- Modal Background -->
+    <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50 p-4 sm:p-6">
+        <!-- Modal Content -->
+        <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-90"
+            class="bg-white rounded-lg shadow-xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center bg-gray-100 p-4 rounded-t-lg border-b border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-800">Edit Pilar dan Program</h3>
+                <button @click="isOpen=false" wire:click="clear({{ $id }})"
+                    class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-md p-1">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-            <div class="p-4">
+            <!-- Modal Body -->
+            <div class="p-6 space-y-4">
                 <form wire:submit="update">
-                    <input type="text" hidden wire:model="id">
-                    <div class="mb-4">
+                    <input type="hidden" wire:model="id">
+                    <div>
                         <label for="nama" class="block text-sm font-medium text-gray-700">Nama</label>
                         <input type="text" id="nama" wire:model="nama" name="nama"
-                            class="block w-full py-1 mt-1 bg-gray-200 border-gray-700 rounded-md shadow-2xl focus:border-indigo-500 sm:text-sm">
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Enter name">
                         @error('nama')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
+                    <div>
                         <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
                         <input type="text" id="slug" wire:model="slug" name="slug"
-                            class="block w-full py-1 mt-1 bg-gray-200 border-gray-700 rounded-md shadow-2xl focus:border-indigo-500 sm:text-sm">
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Enter slug">
                         @error('slug')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
+                    <div>
                         <label for="id_kategori" class="block text-sm font-medium text-gray-700">Kategori</label>
                         <select id="id_kategori" wire:model="id_kategori" name="id_kategori"
-                            class="block w-full py-2 mt-1 bg-gray-200 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 sm:text-sm">
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             <option value="{{null}}" selected>Select</option>
                             @foreach($kategori as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
                             @endforeach
                         </select>
-                    
                         @error('id_kategori')
                             <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
+                    <div>
                         <label for="img" class="block text-sm font-medium text-gray-700">Gambar</label>
                         <input type="file" id="img" wire:model="img" name="img"
-                            class="block w-full py-1 mt-1 bg-gray-200 border-gray-700 rounded-md shadow-2xl focus:border-indigo-500 sm:text-sm">
+                            class="mt-1 block w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-md file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-blue-50 file:text-blue-700
+                            hover:file:bg-blue-100">
                         @error('img')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
+                    <div>
                         <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
-                        <input type="text" id="deskripsi" wire:model="deskripsi" name="deskripsi"
-                            class="block w-full py-1 mt-1 bg-gray-200 border-gray-700 rounded-md shadow-2xl focus:border-indigo-500 sm:text-sm">
+                        <textarea id="deskripsi" wire:model="deskripsi" name="deskripsi" rows="4"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Enter description"></textarea>
                         @error('deskripsi')
                             <span class="text-sm text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <label for="sdgs" class="block text-sm font-medium text-gray-700">SDG</label>
-                        
-                        <div class="flex flex-wrap grid grid-cols-2 gap-4 md:grid-cols-4">
+                        <label class="block text-sm font-medium text-gray-700">Select SDGs</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                             @foreach($sdgs as $sdg)
-                                <div class="flex items-center mb-2 mr-4">
-                                    <!-- Checkbox for each SDG -->
-                                    <input type="checkbox" wire:model="selectedSdgs" id="sdg-{{ $sdg['id'] }}" value="{{ $sdg['id'] }}" class="mr-2">
-                                    
-                                    <!-- SDG Logo -->
-                                    <img src="{{ asset('images/sdg/' . $sdg['image']) }}" alt="{{ $sdg['label'] }}" class="w-10 h-10 object-cover mr-2">
-                                    
-                                    <!-- SDG Label -->
-                                    <label for="sdg-{{ $sdg['id'] }}" class="text-xs">{{ $sdg['label'] }}</label>
-                                </div>
+                                <label class="flex items-center space-x-2 p-2 border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-50">
+                                    <input type="checkbox" wire:model="selectedSdgs" value="{{ $sdg['id'] }}" 
+                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                    <img src="{{ asset('images/sdg/' . $sdg['image']) }}" alt="{{ $sdg['label'] }}" class="w-6 h-6">
+                                    <span class="text-gray-800 text-xs">{{ $sdg['label'] }}</span>
+                                </label>
                             @endforeach
                         </div>
+                        @error('selectedSdgs')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
                     </div>
-                    
-                    
-                    
-                    <!-- Submit Button inside the form -->
-                    <div class="flex justify-end p-4 bg-gray-200 rounded-b-lg">
-                        <button type="button" wire:click="clear({{$id}})" @click="isOpen = false" 
-                            class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700">Close</button>
-                        <button type="submit" @click="isOpen = true"
-                            class="px-4 py-2 ml-2 font-bold text-white bg-green-500 rounded hover:bg-green-700">Submit</button>
+
+                    <!-- Modal Footer -->
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                        <button type="button" wire:click="clear({{$id}})" @click="isOpen = false"
+                            class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300 ease-in-out">
+                            Cancel
+                        </button>
+                        <button type="submit" @click="isOpen = false" wire:loading.attr="disabled"
+                            wire:loading.class="bg-blue-300 cursor-not-allowed"
+                            class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                            Update
+                        </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
-</div>
-
-    
 </div>

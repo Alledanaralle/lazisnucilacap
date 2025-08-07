@@ -180,8 +180,7 @@ class Edit extends Component
 
         $campaign->save();
         session()->flash('message', 'Campaign updated successfully.');
-        $this->dispatch('postUpdated');
-        return $campaign;
+        return redirect()->to(url()->previous());
     }
 
     protected function uploadImage($image)

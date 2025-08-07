@@ -24,6 +24,8 @@ class Index extends Component
         if ($donasi) {
             $donasi->delete();
         $this->dispatch('destroyed', ['message' => 'Donasi Deleted Successfully']);
+        session()->flash('message', 'Donasi Deleted Successfully.');
+        return redirect()->to(url()->previous());
 
         }
         // session()->flash('message', 'donasi Destroyed Successfully ');

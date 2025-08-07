@@ -36,7 +36,8 @@ class Index extends Component
         $campaign = campaign::find($id_campaign);
         if ($campaign) {
             $campaign->delete();
-            $this->dispatch('destroyed', ['message' => 'Campaign deleted Successfully']);
+            session()->flash('message', 'Campaign deleted Successfully.');
+            return redirect()->to(url()->previous());
 
         }
         // session()->flash('message', 'Campaign Destroyed Successfully ');

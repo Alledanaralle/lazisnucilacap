@@ -116,9 +116,8 @@ class FormEdit extends Component
         }
 
         // Reset form dan dispatch event
-        $this->clear($this->id_berita);
-        $this->dispatch('beritaUpdated');
-        return $berita;
+        session()->flash('message', 'Berita updated successfully.');
+        return redirect()->to(url()->previous());
     }
 
 

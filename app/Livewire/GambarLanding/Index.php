@@ -25,9 +25,8 @@ class Index extends Component
             // Hapus data berita
             $landing->delete();
             gambar_landing::reorder();
-
-            // Tampilkan pesan sukses
-            $this->dispatch('destroyed', ['message' => 'Gambar Landing deleted Successfully']);
+            session()->flash('message', 'Gambar Landing deleted Successfully.');
+            return redirect()->to(url()->previous());
             // session()->flash('message', 'Gambar Landing destroyed successfully.');
         }
     }

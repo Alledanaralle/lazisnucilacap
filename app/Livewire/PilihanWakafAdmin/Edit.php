@@ -71,8 +71,8 @@ class Edit extends Component
         }
 
         // Reset form dan dispatch event
-        $this->dispatch('pilihan_wakafUpdated');
-        return $pilihan_wakaf;
+        session()->flash('message', 'Pilihan Wakaf updated successfully.');
+        return redirect()->to(url()->previous());
     }
 
     public function render()

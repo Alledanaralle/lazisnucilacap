@@ -54,10 +54,7 @@ class Edit extends Component
 
         $update_campaign->save();
         session()->flash('message', 'Campaign updated successfully.');
-        $this->clear($this->id_update_campaign);
-        $this->reset();
-        $this->dispatch('updateCampaignUpdated');
-        return $update_campaign;
+        return redirect()->to(url()->previous());
     }
 
     protected function uploadImage($image)

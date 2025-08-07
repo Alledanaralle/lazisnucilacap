@@ -24,9 +24,8 @@ class Index extends Component
 
             // Hapus data berita
             $laporan->delete();
-
-            // Tampilkan pesan sukses
-            $this->dispatch('destroyed', ['message' => 'file laporan deleted Successfully']);
+            session()->flash('message', 'File Laporan deleted Successfully.');
+            return redirect()->to(url()->previous());
             // session()->flash('message', 'file laporan destroyed successfully.');
         }
     }

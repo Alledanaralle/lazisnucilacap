@@ -37,10 +37,8 @@ class Create extends Component
         ]);
         
         // dd($user);
-        $this->reset();
-        
-
-        $this->dispatch('postCreated');
+        session()->flash('message', 'User Created successfully.');
+        return redirect()->to(url()->previous());
     }
     public function render()
     {

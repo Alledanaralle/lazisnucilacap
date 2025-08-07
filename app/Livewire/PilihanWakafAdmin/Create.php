@@ -27,11 +27,8 @@ class Create extends Component
             'pil_wakaf' => $validatedData['pil_wakaf'],
         ]);
 
-        $this->reset();
-
-        $this->dispatch('pilihan_wakafCreated');
-
-        return $pilihan_wakaf;
+        session()->flash('message', 'Pilihan Wakaf Created successfully.');
+        return redirect()->to(url()->previous());
     }
 
     public function render()

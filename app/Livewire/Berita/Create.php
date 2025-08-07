@@ -54,11 +54,8 @@ class Create extends Component
             'picture' => $path, // Simpan path gambar
         ]);
 
-        $this->reset();
-
-        $this->dispatch('beritaCreated');
-
-        return $berita;
+        session()->flash('message', 'Berita Created successfully.');
+        return redirect()->to(url()->previous());
 
     }
 

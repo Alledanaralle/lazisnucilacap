@@ -1,33 +1,50 @@
 <div x-data="{ isOpen: false }" @modal-closed.window="isOpen = false">
     <!-- Button to open the modal -->
     <button @click="isOpen=true"
-        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Create</button>
+        class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+        Create
+    </button>
 
     <!-- Modal Background -->
-    <div x-show="isOpen" class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-50">
+    <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50 p-4 sm:p-6">
         <!-- Modal Content -->
-        <div class="bg-white rounded-lg shadow-lg w-1/2 max-h-[100vh] overflow-y-auto">
+        <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-90"
+            class="bg-white rounded-lg shadow-xl w-full max-w-md mx-auto max-h-[90vh] overflow-y-auto">
             <!-- Modal Header -->
-            <div class="flex justify-between items-center bg-gray-200 p-4 rounded-t-lg">
-                <h3 class="text-xl font-semibold">Create Update Campaign</h3>
-                <button @click="isOpen=false" class="text-gray-600 hover:text-gray-900">&times;</button>
+            <div class="flex justify-between items-center bg-gray-100 p-4 rounded-t-lg border-b border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-800">Create Update Campaign</h3>
+                <button @click="isOpen=false"
+                    class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-md p-1">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-            <div class="p-4">
-                <form wire:submit.prevent="save">
-                    <div class="mb-4">
+            <!-- Modal Body -->
+            <div class="p-6">
+                <form wire:submit.prevent="save" class="space-y-4">
+                    <div>
                         <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                        <small><span class="text-black">[img1] akan diganti dengan Image 1 dan seterusnya</span></small>
-                        <textarea wire:model="description" rows="10"
-                            class="border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        <small><span class="text-gray-500">[img1] akan diganti dengan Image 1 dan seterusnya</span></small>
+                        <textarea wire:model="description" rows="5"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
                             placeholder="Type your text here..."></textarea>
                         @error('description')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-4">
+                    <div>
                         <label for="id_campaign" class="block text-sm font-medium text-gray-700">Campaign</label>
                         <select id="id_campaign" wire:model="id_campaign" name="id_campaign"
-                            class="mt-1 block w-full rounded-md border-gray-700 shadow-2xl focus:border-indigo-500 bg-gray-200 py-1 sm:text-sm">
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
                             <option value="">Select a Campaign</option>
                             @foreach($campaigns as $campaign)
                                 <option value="{{ $campaign->id_campaign }}">{{ $campaign->title }}</option>
@@ -39,32 +56,32 @@
                     </div>
                     
                     
-                    <div class="mb-4">
+                    <div>
                         <label for="picture" class="block text-sm font-medium text-gray-700">Image</label>
-                        <input type="file" id="picture" class="border border-gray-300 p-2 w-full rounded-lg"
+                        <input type="file" id="picture" class="mt-1 block w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-md file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-green-50 file:text-green-700
+                            hover:file:bg-green-100"
                             wire:model="picture">
                         @error('picture')
-                            <span class="text-red-600">{{ $message }}</span>
+                            <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <!-- Submit Button inside the form -->
-                    <div class="flex justify-between p-4 bg-gray-200 rounded-b-lg">
-                        <div wire:loading>
-                            <div class="spinner"></div>
-                            {{-- <div class="spinner-text">Uploading...</div> --}}
-                        </div>
-                        <div wire:loading.remove>
-                            <!-- This content will be hidden while a Livewire request is processing -->
-                        </div>
-                        <div>
-                            <button type="button" @click="isOpen = false"
-                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Close</button>
-                            <button type="submit" @click="isOpen = false"
-                                class="ml-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-                        </div>
+                    <!-- Modal Footer -->
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                        <button type="button" @click="isOpen = false"
+                            class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300 ease-in-out">
+                            Cancel
+                        </button>
+                        <button type="submit" @click="isOpen = false" wire:loading.attr="disabled"
+                            wire:loading.class="bg-green-300 cursor-not-allowed"
+                            class="px-4 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300 ease-in-out">
+                            Save
+                        </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

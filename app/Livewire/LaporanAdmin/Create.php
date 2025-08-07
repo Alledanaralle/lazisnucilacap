@@ -43,12 +43,8 @@ class Create extends Component
         ]);
 
         // Reset input setelah disimpan
-        $this->reset();
-
-        // Emit event bahwa file berhasil dibuat
-        $this->dispatch('fileCreated');
-
-        return $laporan;
+        session()->flash('message', 'Laporan Created successfully.');
+        return redirect()->to(url()->previous());
     }
 
     public function render()

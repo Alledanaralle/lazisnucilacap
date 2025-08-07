@@ -27,6 +27,8 @@ class Index extends Component
             'response' => $status
         ]);
         $this->dispatch($event, ['message' => $status]);
+        session()->flash('message', $status);
+        return redirect()->to(url()->previous());
     }
     public function render()
     {

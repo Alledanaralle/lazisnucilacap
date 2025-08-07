@@ -16,20 +16,21 @@
 
         <livewire:admin-campaign.create />
 
-        <table class="min-w-full mt-4 bg-white border border-gray-200">
+        <div class="overflow-x-auto w-full">
+            <table class="min-w-full mt-4 bg-white border border-gray-200 datatable shadow-md rounded-lg overflow-hidden">
             <thead class="bg-gray-200">
                 <tr class="w-full text-white bg-gray-800">
-                    <th class="px-4 py-2 text-left">Title</th>
+                    <th class="px-6 py-3 text-left font-semibold">Title</th>
                     {{-- <th class="px-4 py-2 text-left">Description</th> --}}
-                    <th class="px-4 py-2 text-left border-b border-gray-300">Goal</th>
-                    <th class="px-4 py-2 text-left border-b border-gray-300">Raised</th>
-                    <th class="px-4 py-2 text-left border-b border-gray-300">Start Date</th>
-                    <th class="px-4 py-2 text-left border-b border-gray-300">End Date</th>
-                    <th class="px-4 py-2 text-left border-b border-gray-300">Min Donation</th>
-                    <th class="px-4 py-2 text-left border-b border-gray-300">Lokasi</th>
-                    <th class="px-4 py-2 text-left border-b border-gray-300">Kategori</th>
-                    <th class="px-4 py-2 text-left border-b border-gray-300">Main Picture</th>
-                    <th class="px-4 py-2 text-left border-b border-gray-300">Action</th>
+                    <th class="px-6 py-3 text-left font-semibold">Goal</th>
+                    <th class="px-6 py-3 text-left font-semibold">Raised</th>
+                    <th class="px-6 py-3 text-left font-semibold">Start Date</th>
+                    <th class="px-6 py-3 text-left font-semibold">End Date</th>
+                    <th class="px-6 py-3 text-left font-semibold">Min Donation</th>
+                    <th class="px-6 py-3 text-left font-semibold">Lokasi</th>
+                    <th class="px-6 py-3 text-left font-semibold">Kategori</th>
+                    <th class="px-6 py-3 text-left font-semibold">Main Picture</th>
+                    <th class="px-6 py-3 text-left font-semibold">Action</th>
                     {{-- <th class="px-4 py-2 text-left">Last Picture</th> --}}
                 </tr>
             </thead>
@@ -60,6 +61,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
         <!-- Pagination Controls -->
         <div class="py-8 mt-4 text-center">
             {{ $campaigns->links('pagination::tailwind') }}

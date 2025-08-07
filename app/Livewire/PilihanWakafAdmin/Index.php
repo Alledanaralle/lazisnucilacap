@@ -26,11 +26,8 @@ class Index extends Component
         $pilihan_wakaf = pilihan_wakaf::find($id);
             // Hapus data pilihan_wakaf
             $pilihan_wakaf->delete();
-
-            // Tampilkan pesan sukses
-            // session()->flash('message', 'pilihan_wakaf destroyed successfully.');
-            // $this->dispatch('created', ['message' => 'pilihan_wakaf Created Successfully']);
-            $this->dispatch('created', ['message' => 'pilihan wakaf Deleted Successfully']);
+            session()->flash('message', 'Pilihan Wakaf Deleted Successfully.');
+            return redirect()->to(url()->previous());
 
 
     }

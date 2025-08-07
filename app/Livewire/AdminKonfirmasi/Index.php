@@ -20,7 +20,8 @@ class Index extends Component
             
             // Hapus data konfirmasi
             $konfirmasi->delete();
-            $this->dispatch('destroyed', ['message' => 'Konfirmasi deleted Successfully']);
+            session()->flash('message', 'Konfirmasi deleted Successfully.');
+            return redirect()->to(url()->previous());
 
             // Tampilkan pesan sukses
             // session()->flash('message', 'Konfirmasi Sukses Dihapus.');

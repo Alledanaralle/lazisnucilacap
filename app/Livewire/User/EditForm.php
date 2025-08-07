@@ -94,9 +94,8 @@ class EditForm extends Component
             ]);
         }
 
-        $this->clear($this->id_user);
-        $this->dispatch('postUpdated');
-        return $user;
+        session()->flash('message', 'User updated successfully.');
+        return redirect()->to(url()->previous());
     }
 
     public function render()

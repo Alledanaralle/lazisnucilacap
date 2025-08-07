@@ -27,11 +27,8 @@ class Create extends Component
             'pil_infaq' => $validatedData['pil_infaq'],
         ]);
 
-        $this->reset();
-
-        $this->dispatch('pilihan_infaqCreated');
-
-        return $pilihan_infaq;
+        session()->flash('message', 'Pilihan Infaq Created successfully.');
+        return redirect()->to(url()->previous());
     }
 
     public function render()

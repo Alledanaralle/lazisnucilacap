@@ -33,11 +33,8 @@ class Create extends Component
             'kebijakan' => $path, // Simpan path kebijakan
         ]);
 
-        $this->reset();
-
-        $this->dispatch('kebijakanCreated');
-
-        return $Kebijakan;
+        session()->flash('message', 'Kebijakan Created successfully.');
+        return redirect()->to(url()->previous());
 
     }
 

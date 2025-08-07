@@ -109,10 +109,8 @@ class Create extends Component
             'last_picture' => $lastPicturePath,
         ]);
         
-        $this->reset();
         session()->flash('message', 'Campaign Created successfully.');
-        $this->dispatch('campaignCreated');
-        return $campaign;
+        return redirect()->to(url()->previous());
 
     }
 

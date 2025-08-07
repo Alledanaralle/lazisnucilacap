@@ -1,40 +1,58 @@
 <div x-data="{ isOpen: false }" @modal-closed.window="isOpen = false">
-    <button @click="isOpen=true" 
-        class="inline-block px-3 py-1 text-white bg-blue-500 rounded hover:bg-blue-700">Edit</button>
+    <!-- Button to open the modal -->
+    <button @click="isOpen=true"
+        class="inline-block px-3 py-1 text-white text-center bg-blue-500 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105">Edit</button>
 
-        <div>
-    <div x-show="isOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-75">
-        <div class="w-1/2 bg-white rounded-lg shadow-lg">
-            <div class="flex items-center justify-between p-4 bg-gray-200 rounded-t-lg">
-                <h3 class="text-xl font-semibold">Edit Pilihan Infaq</h3>
-                <div @click="isOpen=false" class="px-3 rounded-sm shadow hover:bg-red-500">
-                    <button class="text-gray-900">&times;</button>
-                </div>
+    <!-- Modal Background -->
+    <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50 p-4 sm:p-6">
+        <!-- Modal Content -->
+        <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-90"
+            class="bg-white rounded-lg shadow-xl w-full max-w-md mx-auto max-h-[90vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center bg-gray-100 p-4 rounded-t-lg border-b border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-800">Edit Pilihan Infaq</h3>
+                <button @click="isOpen=false" wire:click="clear({{ $id }})"
+                    class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-md p-1">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-            <div class="p-4">
-                <form wire:submit="update">
-                    <input type="text" hidden wire:model="id">
-                    <div class="mb-4">
-                        <label for="pil_infaq" class="block text-sm font-medium text-gray-700">Pilihan infaq</label>
+            <!-- Modal Body -->
+            <div class="p-6">
+                <form wire:submit="update" class="space-y-4">
+                    <input type="hidden" wire:model="id">
+                    <div>
+                        <label for="pil_infaq" class="block text-sm font-medium text-gray-700">Pilihan Infaq</label>
                         <input type="text" id="pil_infaq" wire:model="pil_infaq" name="pil_infaq"
-                            class="block w-full py-1 mt-1 bg-gray-200 border-gray-700 rounded-md shadow-2xl focus:border-indigo-500 sm:text-sm">
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Edit infaq option">
                         @error('pil_infaq')
-                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <!-- Submit Button inside the form -->
-                    <div class="flex justify-end p-4 bg-gray-200 rounded-b-lg">
-                        <button type="button" wire:click="clear({{$id}})" @click="isOpen = false" 
-                            class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700">Close</button>
-                        <button type="submit" @click="isOpen = false"
-                            class="px-4 py-2 ml-2 font-bold text-white bg-green-500 rounded hover:bg-green-700">Submit</button>
+                    <!-- Modal Footer -->
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                        <button type="button" @click="isOpen = false" wire:click="clear({{ $id }})"
+                            class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300 ease-in-out">
+                            Cancel
+                        </button>
+                        <button type="submit" @click="isOpen = false" wire:loading.attr="disabled"
+                            wire:loading.class="bg-blue-300 cursor-not-allowed"
+                            class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                            Update
+                        </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
-</div>
-
-    
 </div>

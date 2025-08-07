@@ -86,16 +86,8 @@ class Create extends Component
         ]);
     
 
-        $this->nama = null;
-        $this->slug = null;
-        $this->img = null;
-        $this->deskripsi = null;
-        $this->selectedSdgs = [];
-    
-
-        $this->dispatch('pilar_programCreated');
-    
-        return $pilar_program;
+        session()->flash('message', 'Pilar Program Created successfully.');
+        return redirect()->to(url()->previous());
     }
     
 

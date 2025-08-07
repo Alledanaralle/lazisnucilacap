@@ -53,9 +53,8 @@ class Edit extends Component
         $this->kategori->save();
 
 
-        $this->dispatch('kategoriUpdated');
-
-        return $this->kategori;
+        session()->flash('message', 'Kategori updated successfully.');
+        return redirect()->to(url()->previous());
     }
     public function render()
     {

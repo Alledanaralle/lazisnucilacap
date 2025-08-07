@@ -87,8 +87,8 @@ class Edit extends Component
         }
 
         // Reset form and dispatch event
-        $this->clear($this->id_partner);
-        $this->dispatch('mitraUpdated');
+        session()->flash('message', 'Mitra updated successfully.');
+        return redirect()->to(url()->previous());
     }
 
     public function render()

@@ -22,8 +22,8 @@ class Index extends Component
             }
 
             $landing->delete();
-
-            $this->dispatch('destroyed', ['message' => 'Kategori deleted Successfully']);
+            session()->flash('message', 'Kategori deleted Successfully.');
+            return redirect()->to(url()->previous());
         }
     }
 

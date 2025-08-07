@@ -14,21 +14,21 @@
             @endif
         </div>
         <!-- Modal Form -->
-        <input type="text" wire:model.live="search" placeholder="   Search" class="ml-4 border border-gray-300 rounded-lg">
         <livewire:pilihan-wakaf-admin.create />
     </div>
-    <table class="min-w-full mt-4 bg-white border border-gray-200">
+    <div class="overflow-x-auto w-full">
+        <table class="min-w-full mt-4 bg-white border border-gray-200 datatable shadow-md rounded-lg overflow-hidden">
         <thead>
-            <tr class="items-center w-full text-white align-middle bg-gray-800">
-                <th class="px-4 py-2 text-center">Pilihan Wakaf</th>
-                <th class="px-4 py-2 text-center">Action</th>
+            <tr class="bg-gray-800 text-white">
+                <th class="px-6 py-3 text-left font-semibold">Pilihan Wakaf</th>
+                <th class="px-6 py-3 text-left font-semibold">Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($pilihan_wakafs as $pilihan_wakaf)
-                <tr class="border-t" wire:key="pilihan_wakaf-{{ $pilihan_wakaf->id }}">
-                    <td class="max-w-xs px-4 py-2 text-center">{{ $pilihan_wakaf->pil_wakaf }}</td>
-                    <td class="px-4 py-2">
+                <tr class="bg-white border-b border-gray-200 hover:bg-gray-50" wire:key="pilihan_wakaf-{{ $pilihan_wakaf->id }}">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $pilihan_wakaf->pil_wakaf }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-2">
                         <div class="flex items-center justify-center gap-3">
                             <div class="flex space-x-2">
                                 <livewire:pilihan-wakaf-admin.edit :id="$pilihan_wakaf->id" wire:key="edit-{{ $pilihan_wakaf->id }}" />
@@ -43,6 +43,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
     <!-- Pagination Controls -->
     <div class="py-8 mt-4 text-center">
         {{ $pilihan_wakafs->links('pagination::tailwind') }}

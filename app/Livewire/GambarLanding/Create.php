@@ -36,11 +36,8 @@ class Create extends Component
             'link' => $this->link, 
         ]);
 
-        $this->reset();
-
-        $this->dispatch('gambarCreated');
-
-        return $landing;
+        session()->flash('message', 'Gambar Landing Created successfully.');
+        return redirect()->to(url()->previous());
 
     }
 

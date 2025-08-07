@@ -35,11 +35,8 @@ class Create extends Component
             'logo' => $path, // Simpan path gambar
         ]);
 
-        $this->reset();
-
-        $this->dispatch('mitraCreated');
-
-        return $mitra;
+        session()->flash('message', 'Mitra Created successfully.');
+        return redirect()->to(url()->previous());
 
     }
 

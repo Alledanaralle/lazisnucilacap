@@ -40,10 +40,8 @@ class Create extends Component
 
         ]);
         
-        $this->reset();
         session()->flash('message', 'Update Campaign Created successfully.');
-        $this->dispatch('updateCampaignCreated');
-        return $update_campaign;
+        return redirect()->to(url()->previous());
 
     }
     protected function uploadImage($image)

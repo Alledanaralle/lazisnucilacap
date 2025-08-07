@@ -23,9 +23,8 @@ class Index extends Component
         // Hapus data misi
         $Misi->delete();
         misi::reorder();
-
-        // Tampilkan pesan sukses
-        $this->dispatch('destroyed', ['message' => 'misi deleted Successfully']);
+        session()->flash('message', 'Misi deleted Successfully.');
+        return redirect()->to(url()->previous());
         // session()->flash('message', 'misi destroyed successfully.');
 
     }

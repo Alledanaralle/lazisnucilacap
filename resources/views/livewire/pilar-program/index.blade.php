@@ -14,31 +14,31 @@
             @endif
         </div>
         <!-- Modal Form -->
-        <input type="text" wire:model.live="search" placeholder="   Search" class="ml-4 border border-gray-300 rounded-lg">
         <livewire:pilar-program.create />
     </div>
-    <table class="min-w-full mt-4 bg-white border border-gray-200">
+    <div class="overflow-x-auto w-full">
+        <table class="min-w-full mt-4 bg-white border border-gray-200 datatable shadow-md rounded-lg overflow-hidden">
         <thead>
-            <tr class="items-center w-full text-white align-middle bg-gray-800">
-                <th class="px-4 py-2 text-center">Nama</th>
-                <th class="px-4 py-2 text-center">Slug</th>
-                <th class="px-4 py-2 text-center">Kategori</th>
-                <th class="px-4 py-2 text-center">Gambar</th>
-                <th class="px-4 py-2 text-center">Deskripsi</th>
-                <th class="px-4 py-2 text-center">Action</th>
+            <tr class="w-full text-white bg-gray-800">
+                <th class="px-6 py-3 text-left font-semibold">Nama</th>
+                <th class="px-6 py-3 text-left font-semibold">Slug</th>
+                <th class="px-6 py-3 text-left font-semibold">Kategori</th>
+                <th class="px-6 py-3 text-left font-semibold">Gambar</th>
+                <th class="px-6 py-3 text-left font-semibold">Deskripsi</th>
+                <th class="px-6 py-3 text-left font-semibold">Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($pilar_programs as $item)
-                <tr class="border-t" wire:key="pilar_program-{{ $item->id }}">
-                    <td class="max-w-xs px-4 py-2 text-center">{{ $item->nama }}</td>
-                    <td class="max-w-xs px-4 py-2 text-center">{{ $item->slug }}</td>
-                    <td class="max-w-xs px-4 py-2 text-center">{{ $item->kategori->nama_kategori ?? 'No Kategori' }}</td>
-                    <td class="max-w-xs px-4 py-2 text-center">
+                <tr class="bg-white border-b border-gray-200 hover:bg-gray-50" wire:key="pilar_program-{{ $item->id }}">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $item->nama }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->slug }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->kategori->nama_kategori ?? 'No Kategori' }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <img src="{{ asset('storage/' . $item->img) }}" alt="Main Picture" class="block w-24 mx-auto mt-2 mb-2">
                     </td>
-                    <td class="max-w-xs px-4 py-2 text-center">{{ $item->deskripsi }}</td>
-                    <td class="px-4 py-2">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->deskripsi }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-2">
                         <div class="flex items-center justify-center gap-3">
                             <div class="flex space-x-2">
                                 <livewire:pilar-program.edit :id="$item->id" wire:key="edit-{{ $item->id }}" />
@@ -53,6 +53,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
     <script>
         function confirmDelete(id) {
             Swal.fire({

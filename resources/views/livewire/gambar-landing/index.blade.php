@@ -16,18 +16,19 @@
         <!-- Modal Form -->
         <livewire:gambar-landing.create />
     </div>
-    <table class="min-w-full mt-4 bg-white border border-gray-200 ">
+    <div class="overflow-x-auto w-full">
+        <table class="min-w-full mt-4 bg-white border border-gray-200 datatable shadow-md rounded-lg overflow-hidden">
         <thead>
-            <tr class="items-center w-full text-white align-middle bg-gray-800">
-                <th class="px-4 py-2">Gambar</th>
-                <th class="px-4 py-2">Link</th>
-                <th class="px-16 py-2">Action</th>
+            <tr class="w-full text-white bg-gray-800">
+                <th class="px-6 py-3 text-left font-semibold">Gambar</th>
+                <th class="px-6 py-3 text-left font-semibold">Link</th>
+                <th class="px-6 py-3 text-left font-semibold">Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($landings as $landing)
-                <tr class="border-t" wire:key="landing-{{ $landing->id_gambar }}">
-                    <td class="flex px-4 py-2">
+                <tr class="bg-white border-b border-gray-200 hover:bg-gray-50" wire:key="landing-{{ $landing->id_gambar }}">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex">
                         <div class="flex flex-col justify-center">
                             <a wire:click="moveUp({{ $landing->id_gambar }})" class="{{ $landing->position == 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer' }}" wire:key="up-{{ $landing->id_gambar }}">
                                 🔼
@@ -39,10 +40,10 @@
                         <img src="{{ asset('storage/' . $landing->gambar) }}" alt="Main Picture"
                             class="block w-1/2 mx-auto mt-2 mb-2">
                     </td>
-                    <td class="px-4 py-2">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <p>{{$landing->link}}</p>
                     </td>
-                    <td class="px-4 py-2">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-2">
                         <div class="flex items-center gap-2">
                             <livewire:gambar-landing.edit :id_gambar="$landing->id_gambar" wire:key="edit-{{ $landing->id_gambar }}"/>
                             <button class="inline-block px-3 py-1 text-white bg-red-500 rounded hover:bg-red-700" 
@@ -55,6 +56,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
     <script>
         function confirmDelete(id) {
             Swal.fire({

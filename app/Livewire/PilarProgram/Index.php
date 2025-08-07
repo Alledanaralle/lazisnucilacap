@@ -22,9 +22,8 @@ class Index extends Component
 
         // Hapus data pilar_program
         $pilar_program->delete();
-
-        // Tampilkan pesan sukses
-        $this->dispatch('destroyed', ['message' => 'Pilar and Program deleted Successfully']);
+        session()->flash('message', 'Pilar and Program deleted Successfully.');
+        return redirect()->to(url()->previous());
         // session()->flash('message', 'misi destroyed successfully.');
 
     }
