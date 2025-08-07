@@ -31,7 +31,7 @@
                                     <input 
                                         type="text" 
                                         value="{{ number_format($selectedQurban->harga, 0, ',', '.') }} / Mudhohi" 
-                                        class="w-full py-1 pr-2 mt-2 bg-gray-300 border border-black rounded h-9 pl-14 md:w-96" 
+                                        class="w-full py-1 pr-2 mt-2 bg-gray-300 border border-black rounded h-9 pl-14 md:w-96 outline-none" 
                                         placeholder="Rp. 0" 
                                         readonly 
                                     />
@@ -46,7 +46,7 @@
                         id="mudhohi" 
                         wire:model="mudhohi"
                         wire:input.lazy="price" 
-                        class="w-full px-2 py-1 mt-2 border border-gray-300 rounded" 
+                        class="w-full px-2 py-1 mt-2 border border-gray-300 outline-none rounded" 
                         placeholder="Isi dengan jumlah Mudhohi" 
                         />
                         @error('mudhohi')
@@ -81,7 +81,7 @@
                             <input 
                                 type="text" 
                                 value="{{ number_format($nominal, 0, ',', '.') }}" 
-                                class="w-full py-1 pr-2 mt-2 bg-gray-300 border border-black rounded h-9 pl-14 md:w-96" 
+                                class="w-full py-1 pr-2 mt-2 bg-gray-300 border border-black rounded h-9 pl-14 md:w-96 outline-none" 
                                 placeholder="Rp. 0" 
                                 readonly 
                             />
@@ -94,7 +94,7 @@
                             <input 
                                 type="text" 
                                 value="0" 
-                                class="w-full py-1 pr-2 mt-2 bg-gray-300 border border-black rounded h-9 pl-14 md:w-96" 
+                                class="w-full py-1 pr-2 mt-2 bg-gray-300 border border-black rounded h-9 pl-14 md:w-96 outline-none" 
                                 placeholder="Rp. 0" 
                                 readonly 
                             />

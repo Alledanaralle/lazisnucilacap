@@ -9,7 +9,7 @@
                     <div class="relative flex items-center justify-center mt-2">
                         <span class="absolute inset-y-0 left-0 flex items-center px-3 bg-gray-300 rounded h-9">Hari </span>
                         <input type="text"
-                        class="w-full py-1 pl-16 pr-2 border border-gray-300 rounded h-9 md:w-96" 
+                        class="w-full py-1 pl-16 pr-2 border border-gray-300 rounded h-9 outline-none md:w-96" 
                         placeholder="Isi Dengan Jumlah Hari" onkeyup="formatAndSync(this)" id="formattedInput">
                         <input type="hidden" wire:model.live="nominal" id="rawInput">
                     </div>
@@ -22,7 +22,7 @@
                     type="text" 
                     id="atasNama" 
                     wire:model="atasNama" 
-                    class="w-full px-2 py-1 mt-2 border border-gray-300 rounded md:w-96" 
+                    class="w-full px-2 py-1 mt-2 border border-gray-300 outline-none rounded md:w-96" 
                     placeholder="Isikan nama anda" 
                     />
                     @error('atasNama')
@@ -36,7 +36,7 @@
                             <input 
                             oninput="formatMoney(this)"
                             type="text"   
-                            class="w-full py-1 pr-2 mt-2 bg-gray-300 border border-black rounded h-9 pl-14 md:w-96" 
+                            class="w-full py-1 pr-2 mt-2 bg-gray-300 border border-black rounded h-9 pl-14 md:w-96 outline-none" 
                             id="nominalFidyahDisplay" placeholder="Minimal donasi"
                             value="{{ number_format($nominal_fidyah, 0, ',', '.') }}"
                             readonly

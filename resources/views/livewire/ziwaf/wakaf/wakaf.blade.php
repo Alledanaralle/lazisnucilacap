@@ -52,7 +52,7 @@
                             id="wakaf" 
                             wire:model.lazy="wakaf" 
                             type="text" 
-                            class="w-full py-1 pr-2 border border-gray-300 rounded h-9 pl-14" 
+                            class="w-full py-1 pr-2 border border-gray-300 rounded h-9 pl-14 outline-none" 
                             placeholder="0" 
                         />
                     </div>

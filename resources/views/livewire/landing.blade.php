@@ -102,7 +102,8 @@
                 <div
                     class="flex flex-col items-center w-20 p-4 bg-white rounded-lg shadow-2xl sm:w-36 sm:h-36 md:w-48 md:h-44 h-[110px] border">
                     <div class="px-4 py-4 bg-green-500 rounded-full">
-                        <img src="{{ asset('images/kalkulator.png') }}" alt="Image 2"
+                        <img src="{{ asset('images/kalkulator.png
+                        ') }}" alt="Image 2"
                             class="w-6 h-4 md:p-1 sm:w-8 sm:h-8 md:w-16 md:h-16 lg:w-16 lg:h-16">
                     </div>
                     <p class="text-[10px] mt-2 md:text-lg font-medium text-center text-gray-800">Kalkulator Zakat</p>
