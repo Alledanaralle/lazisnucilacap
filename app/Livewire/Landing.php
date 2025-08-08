@@ -45,7 +45,10 @@ class Landing extends Component
         $this->landings = gambar_landing::query()
             ->latest()
             ->get();
-
+        $this->loadVisiMisi();
+        $this->loadCampaigns();
+        $this->loadBerita();
+        $this->loadMitra();
     }
     public function loadVisiMisi(){
          $this->visis = visi::orderBy('order', 'asc')->get();
