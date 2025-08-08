@@ -335,7 +335,6 @@
             });
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Custom CSS untuk memperkecil ukuran modal -->
     <style>
@@ -350,59 +349,27 @@
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            window.addEventListener('updated', event => {
+            // Listener untuk Livewire dispatch (untuk notifikasi tanpa refresh)
+            Livewire.on('swal:fire', (event) => {
                 Swal.fire({
-                    title: 'Success!',
-                    text: event.detail[0].message,
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    // Dispatch the modal-closed event to close the modal
-                    window.dispatchEvent(new CustomEvent('modal-closed'));
+                    icon: event[0].type,
+                    title: event[0].title,
+                    text: event[0].text,
                 });
             });
-        });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            window.addEventListener('created', event => {
+            // Cek session flash untuk notifikasi setelah refresh
+            @if (session()->has('swal'))
+                const swalData = {{ Js::from(session('swal')) }};
                 Swal.fire({
-                    title: 'Success!',
-                    text: event.detail[0].message,
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    // Dispatch the modal-closed event to close the modal
-                    window.dispatchEvent(new CustomEvent('modal-closed'));
+                    icon: swalData.type,
+                    title: swalData.title,
+                    text: swalData.text,
                 });
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            window.addEventListener('destroyed', event => {
-                Swal.fire({
-                    title: 'Warning!',
-                    text: event.detail[0].message,
-                    icon: 'warning',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    // Dispatch the modal-closed event to close the modal
-                    window.dispatchEvent(new CustomEvent('modal-closed'));
-                });
-            });
+            @endif
         });
     </script>
 
     @livewireScripts
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const flashMessage = document.getElementById('flash-message');
-        if (flashMessage) {
-            setTimeout(() => {
-                flashMessage.style.display = 'none';
-            }, 3000); // 3000 milidetik = 3 detik
-        }
-    });
-</script>
-
 </html>

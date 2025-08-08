@@ -109,8 +109,9 @@ class Create extends Component
             'last_picture' => $lastPicturePath,
         ]);
         
-        session()->flash('message', 'Campaign Created successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Campaign Created successfully.']);
         return redirect()->to(url()->previous());
+        
 
     }
 

@@ -22,21 +22,22 @@ class Index extends Component
             }
 
             $landing->delete();
-            session()->flash('message', 'Kategori deleted Successfully.');
+            session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Kategori deleted Successfully.']);
             return redirect()->to(url()->previous());
+            
         }
     }
 
     #[On('kategoriCreated')]
     public function handleberitaCreated()
     {
-            session()->flash('message', 'Kategori created Successfully');
+            $this->dispatch('swal:fire', ['type' => 'success', 'title' => 'Success', 'text' => 'Kategori created Successfully']);
     }
     #[On('kategoriUpdated')]
 
     public function handleberitaUpdated()
     {
-            session()->flash('message', 'Kategori updated Successfully');
+            $this->dispatch('swal:fire', ['type' => 'success', 'title' => 'Success', 'text' => 'Kategori updated Successfully']);
     }
     public function render()
     {

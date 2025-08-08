@@ -11,9 +11,10 @@ class Index extends Component
     #[On('visiUpdated')]
     public function handlevisiEdited()
     {
-        session()->flash('message', 'Visi Updated Successfully');
-        // session()->flash('message', 'visi Updated Successfully ');
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Visi Updated Successfully',
+        ]);
     }
 
     public function destroy($id_visi)
@@ -21,9 +22,13 @@ class Index extends Component
         $Visi = visi::find($id_visi);
         $Visi->delete();
         visi::reorder();
-        session()->flash('message', 'Visi deleted Successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Visi deleted Successfully.',
+        ]);
         return redirect()->to(url()->previous());
-        // session()->flash('message', 'visi destroyed successfully.');
+        
 
     }
 
@@ -31,10 +36,10 @@ class Index extends Component
     #[On('visiCreated')]
     public function handlevisiCreated()
     {
-        session()->flash('message', 'Visi Created Successfully');
-        // session()->flash('message', 'visi Created Successfully ');
-
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Visi Created Successfully',
+        ]);
     }
     public function moveUp($id_visi)
     {

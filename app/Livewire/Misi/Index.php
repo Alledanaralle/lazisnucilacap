@@ -11,9 +11,10 @@ class Index extends Component
     #[On('misiUpdated')]
     public function handlemisiEdited()
     {
-        session()->flash('message', 'Misi Updated Successfully');
-        // session()->flash('message', 'misi Updated Successfully ');
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Misi Updated Successfully',
+        ]);
     }
 
     public function destroy($id_misi)
@@ -23,9 +24,13 @@ class Index extends Component
         // Hapus data misi
         $Misi->delete();
         misi::reorder();
-        session()->flash('message', 'Misi deleted Successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Misi deleted Successfully.',
+        ]);
         return redirect()->to(url()->previous());
-        // session()->flash('message', 'misi destroyed successfully.');
+        
 
     }
 
@@ -33,18 +38,18 @@ class Index extends Component
     #[On('misiCreated')]
     public function handlemisiCreated()
     {
-        session()->flash('message', 'Misi created Successfully');
-        // session()->flash('message', 'misi Created Successfully ');
-
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Misi created Successfully',
+        ]);
     }
     #[On('misiUpdated')]
     public function handlemisiUpdated()
     {
-        $this->dispatch('updated', ['message' => 'misi updated Successfully']);
-        // session()->flash('message', 'misi Created Successfully ');
-
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Misi updated Successfully',
+        ]);
     }
 
     public function moveUp($id_misi)

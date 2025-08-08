@@ -13,7 +13,7 @@ class Index extends Component
     public function handlePostEdited()
     {
         // session()->flash('message', 'donasi Updated Successfully ');
-        session()->flash('message', 'Donasi Updated Successfully');
+        $this->dispatch('swal:fire', ['type' => 'success', 'title' => 'Success', 'text' => 'Donasi Updated Successfully']);
 
 
     }
@@ -23,9 +23,9 @@ class Index extends Component
         $donasi = Donasi::find($id_donasi);
         if ($donasi) {
             $donasi->delete();
-        session()->flash('message', 'Donasi Deleted Successfully');
-        session()->flash('message', 'Donasi Deleted Successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Donasi Deleted Successfully.']);
         return redirect()->to(url()->previous());
+            
 
         }
         // session()->flash('message', 'donasi Destroyed Successfully ');
@@ -37,7 +37,7 @@ class Index extends Component
     public function handlePostCreated()
     {
         // session()->flash('message', 'donasi Created Successfully ');
-        session()->flash('message', 'Donasi Created Successfully');
+        $this->dispatch('swal:fire', ['type' => 'success', 'title' => 'Success', 'text' => 'Donasi Created Successfully']);
 
 
     }

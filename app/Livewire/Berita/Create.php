@@ -55,8 +55,9 @@ class Create extends Component
             'slug' => $validatedData['slug'],
         ]);
 
-        session()->flash('message', 'Berita Created successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Berita Created successfully.']);
         return redirect()->to(url()->previous());
+        
 
     }
 

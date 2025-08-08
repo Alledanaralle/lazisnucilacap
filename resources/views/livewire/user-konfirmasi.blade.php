@@ -3,16 +3,6 @@
     <div class="flex flex-col h-full min-h-screen bg-white shadow-md md:w-[414px] w-screen">
         <div class="flex flex-col py-4 px-[24px]">
             <div>
-                @if (session()->has('message'))
-                    <div id="flash-message"
-                        class="flex items-center justify-between p-4 mx-12 mt-8 mb-4 text-white bg-green-500 rounded">
-                        <span>{{ session('message') }}</span>
-                        <button class="p-1"  onclick="document.getElementById('flash-message').style.display='none'"
-                            class="font-bold text-white">
-                            &times;
-                        </button>
-                    </div>
-                @endif
             </div>
             <h1 class="font-semibold text-green-500 ">
                 Formulir Konfirmasi Donasi

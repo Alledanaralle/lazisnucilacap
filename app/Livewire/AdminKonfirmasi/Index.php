@@ -20,8 +20,9 @@ class Index extends Component
             
             // Hapus data konfirmasi
             $konfirmasi->delete();
-            session()->flash('message', 'Konfirmasi deleted Successfully.');
+            session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Konfirmasi deleted Successfully.']);
             return redirect()->to(url()->previous());
+            
 
             // Tampilkan pesan sukses
             // session()->flash('message', 'Konfirmasi Sukses Dihapus.');

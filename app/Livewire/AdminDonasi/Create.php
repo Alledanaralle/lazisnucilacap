@@ -37,8 +37,8 @@ class Create extends Component
 
         // Pastikan user ditemukan sebelum melanjutkan
         if (!$user) {
-            session()->flash('error', 'Username tidak ditemukan.');
-            return; // Atau tampilkan error lain
+            session()->flash('swal', ['type' => 'error', 'title' => 'Error', 'text' => 'Username tidak ditemukan.']);
+            return redirect()->to(url()->previous()); // Atau tampilkan error lain
         }
 
         $donasi = Donasi::create([
@@ -52,8 +52,9 @@ class Create extends Component
         ]);
 
         // $donasi->save(); // Baris ini tidak diperlukan karena sudah menggunakan create()
-        session()->flash('message', 'Donasi updated successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Donasi updated successfully.']);
         return redirect()->to(url()->previous());
+        
     }
     public function render()
     {

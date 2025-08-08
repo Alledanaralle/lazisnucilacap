@@ -17,7 +17,7 @@ class Index extends Component
     public function handleberitaEdited()
     {
         // session()->flash('message', 'Berita Updated Successfully');
-        session()->flash('message', 'Berita Updated Successfully');
+        $this->dispatch('swal:fire', ['type' => 'success', 'title' => 'Success', 'text' => 'Berita Updated Successfully']);
 
     }
 
@@ -32,8 +32,9 @@ class Index extends Component
 
             // Hapus data berita
             $berita->delete();
-            session()->flash('message', 'Berita Deleted Successfully.');
+            session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Berita Deleted Successfully.']);
             return redirect()->to(url()->previous());
+            
 
 
         }
@@ -43,7 +44,7 @@ class Index extends Component
     public function handleberitaCreated()
     {
         // session()->flash('message', 'Berita Created Successfully');
-        session()->flash('message', 'Berita Created Successfully');
+        $this->dispatch('swal:fire', ['type' => 'success', 'title' => 'Success', 'text' => 'Berita Created Successfully']);
 
     }
 

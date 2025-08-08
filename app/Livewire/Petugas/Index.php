@@ -11,8 +11,10 @@ class Index extends Component
     #[On('petugasUpdated')]
     public function handlepetugasEdited()
     {
-        session()->flash('message', 'Petugas Updated Successfully');
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Petugas Updated Successfully',
+        ]);
     }
 
     public function destroy($id_petugas)
@@ -21,8 +23,13 @@ class Index extends Component
 
         // Hapus data misi
         $petugases->delete();
-        session()->flash('message', 'Petugas deleted Successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Petugas deleted Successfully.',
+        ]);
         return redirect()->to(url()->previous());
+        
 
     }
 
@@ -30,9 +37,10 @@ class Index extends Component
     #[On('petugasCreated')]
     public function handlepetugasCreated()
     {
-        session()->flash('message', 'Petugas created Successfully');
-
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Petugas created Successfully',
+        ]);
     }
 
     public function render()

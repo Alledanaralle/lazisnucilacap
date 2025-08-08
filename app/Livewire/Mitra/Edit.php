@@ -86,9 +86,13 @@ class Edit extends Component
             ]);
         }
 
-        // Reset form and dispatch event
-        session()->flash('message', 'Mitra updated successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Mitra updated successfully.',
+        ]);
         return redirect()->to(url()->previous());
+        
     }
 
     public function render()

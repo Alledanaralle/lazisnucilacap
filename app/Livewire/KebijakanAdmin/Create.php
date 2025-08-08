@@ -33,8 +33,9 @@ class Create extends Component
             'kebijakan' => $path, // Simpan path kebijakan
         ]);
 
-        session()->flash('message', 'Kebijakan Created successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Kebijakan Created successfully.']);
         return redirect()->to(url()->previous());
+        
 
     }
 

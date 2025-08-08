@@ -39,8 +39,14 @@ class Create extends Component
             'harga' => $validatedData['harga2'],
         ]);
 
-        session()->flash('message', 'Pilihan Qurban Created successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Pilihan Qurban Created successfully.',
+        ]);
         return redirect()->to(url()->previous());
+
+        
     }
 
     public function render()

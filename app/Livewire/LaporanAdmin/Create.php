@@ -43,8 +43,9 @@ class Create extends Component
         ]);
 
         // Reset input setelah disimpan
-        session()->flash('message', 'Laporan Created successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Laporan Created successfully.']);
         return redirect()->to(url()->previous());
+        
     }
 
     public function render()

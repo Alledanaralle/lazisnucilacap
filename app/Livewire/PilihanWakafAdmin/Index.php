@@ -16,9 +16,10 @@ class Index extends Component
     #[On('pilihan_wakafUpdated')]
     public function handlepilihan_wakafEdited()
     {
-        // session()->flash('message', 'pilihan_wakaf Updated Successfully');
-        session()->flash('message', 'Pilihan Wakaf Updated Successfully');
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Pilihan Wakaf Updated Successfully',
+        ]);
     }
 
     public function destroy($id)
@@ -26,8 +27,13 @@ class Index extends Component
         $pilihan_wakaf = pilihan_wakaf::find($id);
             // Hapus data pilihan_wakaf
             $pilihan_wakaf->delete();
-            session()->flash('message', 'Pilihan Wakaf Deleted Successfully.');
+            session()->flash('swal', [
+                'type' => 'success',
+                'title' => 'Success!',
+                'text' => 'Pilihan Wakaf Deleted Successfully.',
+            ]);
             return redirect()->to(url()->previous());
+            
 
 
     }
@@ -35,9 +41,10 @@ class Index extends Component
     #[On('pilihan_wakafCreated')]
     public function handlepilihan_wakafCreated()
     {
-        // session()->flash('message', 'pilihan_wakaf Created Successfully');
-        session()->flash('message', 'Pilihan Wakaf Created Successfully');
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Pilihan Wakaf Created Successfully',
+        ]);
     }
 
     public function render()

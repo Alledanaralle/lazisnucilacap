@@ -192,51 +192,31 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            window.addEventListener('updated', event => {
+            // Listener untuk Livewire dispatch (untuk notifikasi tanpa refresh)
+            Livewire.on('swal:fire', (event) => {
                 Swal.fire({
-                    title: 'Success!',
-                    text: event.detail[0].message,
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    // Dispatch the modal-closed event to close the modal
-                    window.dispatchEvent(new CustomEvent('modal-closed'));
+                    icon: event[0].type,
+                    title: event[0].title,
+                    text: event[0].text,
                 });
             });
-        });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            window.addEventListener('created', event => {
+            // Cek session flash untuk notifikasi setelah refresh
+            @if (session()->has('swal'))
+                const swalData = {{ Js::from(session('swal')) }};
                 Swal.fire({
-                    title: 'Success!',
-                    text: event.detail[0].message,
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    // Dispatch the modal-closed event to close the modal
-                    window.dispatchEvent(new CustomEvent('modal-closed'));
+                    icon: swalData.type,
+                    title: swalData.title,
+                    text: swalData.text,
                 });
-            });
-        });
+            @endif
 
-        document.addEventListener('DOMContentLoaded', function() {
-            window.addEventListener('destroyed', event => {
-                Swal.fire({
-                    title: 'Warning!',
-                    text: event.detail[0].message,
-                    icon: 'warning',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    // Dispatch the modal-closed event to close the modal
-                    window.dispatchEvent(new CustomEvent('modal-closed'));
-                });
+            document.getElementById('no_telp').addEventListener('input', function (e) {
+                let value = e.target.value;
+                value = value.replace(/[^0-9+]/g, '');
+                e.target.value = value;
             });
         });
-        document.getElementById('no_telp').addEventListener('input', function (e) {
-        let value = e.target.value;
-        value = value.replace(/[^0-9+]/g, '');
-        e.target.value = value;
-    });
     </script>
     @livewireScripts
 </body>

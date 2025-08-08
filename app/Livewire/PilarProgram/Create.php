@@ -86,8 +86,14 @@ class Create extends Component
         ]);
     
 
-        session()->flash('message', 'Pilar Program Created successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Pilar Program Created successfully.',
+        ]);
         return redirect()->to(url()->previous());
+
+        
     }
     
 

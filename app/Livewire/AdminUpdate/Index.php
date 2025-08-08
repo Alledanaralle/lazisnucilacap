@@ -12,14 +12,14 @@ class Index extends Component
     #[On('updateCampaignUpdated')]
     public function handlePostEdited()
     {
-            session()->flash('message', 'Update Campaign updated Successfully');
+            $this->dispatch('swal:fire', ['type' => 'success', 'title' => 'Success', 'text' => 'Update Campaign updated Successfully']);
         // session()->flash('message', 'Update Campaign Updated Successfully ');
 
     }
     #[On('updateCampaignCreated')]
     public function handleCampaignCreated()
     {
-            session()->flash('message', 'Update Campaign created Successfully');
+            $this->dispatch('swal:fire', ['type' => 'success', 'title' => 'Success', 'text' => 'Update Campaign created Successfully']);
         // session()->flash('message', 'Update Campaign Created Successfully ');
         
     }
@@ -28,8 +28,9 @@ class Index extends Component
         $update_campaign = update_campaign::find($id_update_campaign);
         if ($update_campaign) {
             $update_campaign->delete();
-            session()->flash('message', 'Update Campaign deleted Successfully.');
+            session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Update Campaign deleted Successfully.']);
             return redirect()->to(url()->previous());
+            
         }
         // session()->flash('message', 'Update Campaign Destroyed Successfully ');
 

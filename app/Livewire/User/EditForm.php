@@ -115,8 +115,14 @@ class EditForm extends Component
             $user->update($updateData);
         }
 
-        session()->flash('message', 'User updated successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'User updated successfully.',
+        ]);
         return redirect()->to(url()->previous());
+
+        
     }
 
     public function render()

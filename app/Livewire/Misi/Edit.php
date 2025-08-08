@@ -44,8 +44,14 @@ class Edit extends Component
         ]);
         misi::reorder();
 
-        session()->flash('message', 'Misi updated successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Misi updated successfully.',
+        ]);
         return redirect()->to(url()->previous());
+
+        
 
     }
     public function render()

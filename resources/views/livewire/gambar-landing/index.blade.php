@@ -2,16 +2,6 @@
     <div class="flex justify-between mx-4 mt-12">
         <h1 class="text-2xl font-bold ">Gambar Landing Table</h1>
         <div>
-            @if (session()->has('message'))
-                <div id="flash-message"
-                    class="flex items-center justify-between p-4 mx-12 mt-8 mb-4 text-white bg-green-500 rounded">
-                    <span>{{ session('message') }}</span>
-                    <button class="p-1" onclick="document.getElementById('flash-message').style.display='none'"
-                        class="font-bold text-white">
-                        &times;
-                    </button>
-                </div>
-            @endif
         </div>
         <!-- Modal Form -->
         <livewire:gambar-landing.create />

@@ -54,11 +54,13 @@ class Edit extends Component
             'bagian' => $validatedData['bagian'],
         ]);
 
-        // Reset the form inputs
-        // dd($validatedData);
-        // Dispatch the event for the updated image
-        session()->flash('message', 'Petugas updated successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Petugas updated successfully.',
+        ]);
         return redirect()->to(url()->previous());
+        
     }
 
     public function render()

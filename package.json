@@ -16,6 +16,6 @@
     },
     "dependencies": {
         "caniuse-lite": "^1.0.30001731",
-        "sweetalert": "^2.1.2"
+        "sweetalert2": "^11.12.2"
     }
 }

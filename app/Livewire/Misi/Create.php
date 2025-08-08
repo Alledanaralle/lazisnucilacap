@@ -29,8 +29,14 @@ class Create extends Component
         ]);
         misi::reorder();
 
-        session()->flash('message', 'Misi Created successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Misi Created successfully.',
+        ]);
         return redirect()->to(url()->previous());
+
+        
 
     }
     public function render()

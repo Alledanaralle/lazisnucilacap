@@ -36,8 +36,9 @@ class Create extends Component
             'link' => $this->link, 
         ]);
 
-        session()->flash('message', 'Gambar Landing Created successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Gambar Landing Created successfully.']);
         return redirect()->to(url()->previous());
+        
 
     }
 

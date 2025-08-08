@@ -39,9 +39,13 @@ class Create extends Component
             'email' => $validatedData['email']
         ]);
         
-        // dd($user);
-        session()->flash('message', 'User Created successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'User Created successfully.',
+        ]);
         return redirect()->to(url()->previous());
+        
     }
     public function render()
     {

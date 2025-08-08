@@ -2,15 +2,7 @@
     <x-nav-mobile2 title="Profil" />
     <div class="flex flex-col bg-white shadow-md" style="width: 414px; height: 700px">
         @if (session()->has('message'))
-                <div id="flash-message"
-                    class="flex items-center justify-between p-4 mx-12 mt-8 mb-4 text-white bg-green-500 rounded">
-                    <span>{{ session('message') }}</span>
-                    <button class="p-1"  onclick="document.getElementById('flash-message').style.display='none'"
-                        class="font-bold text-white">
-                        &times;
-                    </button>
-                </div>
-            @endif
+        @endif
         <div class="flex flex-col items-center justify-center mt-4">
             <H2 class="mb-8 font-semibold">Ubah Data Akun</H2>
         </div>

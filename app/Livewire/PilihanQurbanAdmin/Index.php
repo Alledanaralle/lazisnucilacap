@@ -16,9 +16,10 @@ class Index extends Component
     #[On('pilihan_qurbanUpdated')]
     public function handlepilihan_qurbanEdited()
     {
-        // session()->flash('message', 'pilihan_qurban Updated Successfully');
-        session()->flash('message', 'Pilihan Qurban Updated Successfully');
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Pilihan Qurban Updated Successfully',
+        ]);
     }
 
     public function destroy($id)
@@ -26,8 +27,13 @@ class Index extends Component
         $pilihan_qurban = pilihan_qurban::find($id);
         // Hapus data pilihan_qurban
         $pilihan_qurban->delete();
-        session()->flash('message', 'Pilihan Qurban Deleted Successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Pilihan Qurban Deleted Successfully.',
+        ]);
         return redirect()->to(url()->previous());
+        
 
 
     }
@@ -35,9 +41,10 @@ class Index extends Component
     #[On('pilihan_qurbanCreated')]
     public function handlepilihan_qurbanCreated()
     {
-        // session()->flash('message', 'pilihan_qurban Created Successfully');
-        session()->flash('message', 'Pilihan Qurban Created Successfully');
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Pilihan Qurban Created Successfully',
+        ]);
     }
 
     public function render()

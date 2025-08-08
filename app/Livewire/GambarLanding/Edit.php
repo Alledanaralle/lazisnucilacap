@@ -57,8 +57,9 @@ class Edit extends Component
         // Reset the form inputs
 
         // Dispatch the event for the updated image
-        session()->flash('message', 'Gambar Landing updated successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Gambar Landing updated successfully.']);
         return redirect()->to(url()->previous());
+        
     }
 
     public function render()

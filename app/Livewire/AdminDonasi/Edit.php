@@ -58,11 +58,17 @@ class Edit extends Component
         
 
         if (!$user) {
-            session()->flash('error', 'Username tidak ditemukan.');
+            $this->dispatch('swal:fire', ['type' => 'error', 'title' => 'Error', 'text' => 'Username tidak ditemukan.']);
             return;
         }
 
          
+                if (!$user) {
+            session()->flash('swal', ['type' => 'error', 'title' => 'Error', 'text' => 'Username tidak ditemukan.']);
+            return redirect()->to(url()->previous());
+        }
+
+
         $donasi->jumlah_donasi = $this->jumlah_donasi;
         $donasi->id_campaign = $this->id_campaign;
         $donasi->username = $this->username;
@@ -70,8 +76,9 @@ class Edit extends Component
         $donasi->email = $this->email;
 
         $donasi->save();
-        session()->flash('message', 'Donasi updated successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Donasi updated successfully.']);
         return redirect()->to(url()->previous());
+        
     }
 
 

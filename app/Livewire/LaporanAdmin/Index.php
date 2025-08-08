@@ -24,24 +24,32 @@ class Index extends Component
 
             // Hapus data berita
             $laporan->delete();
-            session()->flash('message', 'File Laporan deleted Successfully.');
+            session()->flash('swal', [
+                'type' => 'success',
+                'title' => 'Success!',
+                'text' => 'File Laporan deleted Successfully.',
+            ]);
             return redirect()->to(url()->previous());
-            // session()->flash('message', 'file laporan destroyed successfully.');
+            
         }
     }
 
     #[On('fileCreated')]
     public function handleberitaCreated()
     {
-        session()->flash('message', 'File Laporan created Successfully');
-        // session()->flash('message', 'file laporan Created Successfully');
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'File Laporan created Successfully',
+        ]);
     }
     #[On('fileUpdated')]
 
     public function handleberitaUpdated()
     {
-        session()->flash('message', 'File Laporan updated Successfully');
-        // session()->flash('message', 'file laporan Created Successfully');
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'File Laporan updated Successfully',
+        ]);
     }
 
     public function render()

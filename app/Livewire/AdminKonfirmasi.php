@@ -22,7 +22,7 @@ class AdminKonfirmasi extends Component
             $konfirmasi->delete();
 
             // Tampilkan pesan sukses
-            session()->flash('message', 'Konfirmasi Sukses Dihapus.');
+            $this->dispatch('destroyed', ['message' => 'Konfirmasi Sukses Dihapus.']);
         }
     }
 

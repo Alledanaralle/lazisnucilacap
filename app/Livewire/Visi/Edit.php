@@ -35,10 +35,14 @@ class Edit extends Component
 
         visi::reorder();
 
-        // $this->reset();
-
-        session()->flash('message', 'Visi updated successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Visi updated successfully.',
+        ]);
         return redirect()->to(url()->previous());
+
+        
 
     }
     public function render()

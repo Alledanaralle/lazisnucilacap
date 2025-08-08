@@ -25,23 +25,22 @@ class Index extends Component
             // Hapus data berita
             $landing->delete();
             gambar_landing::reorder();
-            session()->flash('message', 'Gambar Landing deleted Successfully.');
+            session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Gambar Landing deleted Successfully.']);
             return redirect()->to(url()->previous());
-            // session()->flash('message', 'Gambar Landing destroyed successfully.');
         }
     }
 
     #[On('gambarCreated')]
     public function handleberitaCreated()
     {
-            session()->flash('message', 'Gambar Landing created Successfully');
+            $this->dispatch('swal:fire', ['type' => 'success', 'title' => 'Success', 'text' => 'Gambar Landing created Successfully']);
         // session()->flash('message', 'Gambar Landing Created Successfully');
     }
     #[On('gambarUpdated')]
 
     public function handleberitaUpdated()
     {
-            session()->flash('message', 'Gambar Landing updated Successfully');
+            $this->dispatch('swal:fire', ['type' => 'success', 'title' => 'Success', 'text' => 'Gambar Landing updated Successfully']);
         // session()->flash('message', 'Gambar Landing Created Successfully');
     }
 

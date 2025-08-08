@@ -62,7 +62,10 @@ class Account extends Component
 
         $user->save();
 
-        session()->flash('message', 'Profile updated successfully.');
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Profile updated successfully.',
+        ]);
     }
     public function render()
     {

@@ -15,9 +15,10 @@ class Index extends Component
     #[On('mitraUpdated')]
     public function handlemitraEdited()
     {
-            session()->flash('message', 'Mitra Updated Successfully');
-        // session()->flash('message', 'mitra Updated Successfully ');
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Mitra Updated Successfully',
+        ]);
     }
 
     public function destroy($id_partner)
@@ -31,9 +32,13 @@ class Index extends Component
 
             // Hapus data mitra
             $mitra->delete();
-            session()->flash('message', 'Mitra deleted Successfully.');
+            session()->flash('swal', [
+                'type' => 'success',
+                'title' => 'Success!',
+                'text' => 'Mitra deleted Successfully.',
+            ]);
             return redirect()->to(url()->previous());
-            // session()->flash('message', 'mitra destroyed successfully.');
+            
 
         }
     }
@@ -42,10 +47,10 @@ class Index extends Component
     #[On('mitraCreated')]
     public function handlemitraCreated()
     {
-            session()->flash('message', 'Mitra created Successfully');
-        // session()->flash('message', 'mitra Created Successfully ');
-
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Mitra created Successfully',
+        ]);
     }
     public function render()
     {

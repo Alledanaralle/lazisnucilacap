@@ -23,8 +23,9 @@ class Index extends Component
 
             // Hapus data berita
             $Kebijakan->delete();
-            session()->flash('message', 'Kebijakan deleted Successfully.');
+            session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Kebijakan deleted Successfully.']);
             return redirect()->to(url()->previous());
+            
             // session()->flash('message', 'Kebijakan destroyed successfully.');
         }
     }
@@ -32,7 +33,7 @@ class Index extends Component
     #[On('kebijakanCreated')]
     public function handleberitaCreated()
     {
-            session()->flash('message', 'Kebijakan created Successfully');
+            $this->dispatch('swal:fire', ['type' => 'success', 'title' => 'Success', 'text' => 'Kebijakan created Successfully']);
         // session()->flash('message', 'kebijakan Created Successfully');
     }
 

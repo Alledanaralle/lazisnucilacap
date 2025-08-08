@@ -36,8 +36,9 @@ class Create extends Component
             'nama_kategori' => $this->nama_kategori,
         ]);
     
-        session()->flash('message', 'Kategori Created successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Kategori Created successfully.']);
         return redirect()->to(url()->previous());
+        
     }
     
     public function render()

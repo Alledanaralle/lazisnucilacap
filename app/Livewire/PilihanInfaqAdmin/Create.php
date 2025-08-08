@@ -27,8 +27,14 @@ class Create extends Component
             'pil_infaq' => $validatedData['pil_infaq'],
         ]);
 
-        session()->flash('message', 'Pilihan Infaq Created successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Pilihan Infaq Created successfully.',
+        ]);
         return redirect()->to(url()->previous());
+
+        
     }
 
     public function render()

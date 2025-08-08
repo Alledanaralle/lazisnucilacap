@@ -11,9 +11,10 @@ class Index extends Component
     #[On('pilar_programUpdated')]
     public function handlepilar_programEdited()
     {
-        session()->flash('message', 'Pilar and Program Updated Successfully');
-        // session()->flash('message', 'misi Updated Successfully ');
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Pilar and Program Updated Successfully',
+        ]);
     }
 
     public function destroy($id)
@@ -22,9 +23,13 @@ class Index extends Component
 
         // Hapus data pilar_program
         $pilar_program->delete();
-        session()->flash('message', 'Pilar and Program deleted Successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Pilar and Program deleted Successfully.',
+        ]);
         return redirect()->to(url()->previous());
-        // session()->flash('message', 'misi destroyed successfully.');
+        
 
     }
 
@@ -32,19 +37,19 @@ class Index extends Component
     #[On('pilar_programCreated')]
     public function handlepilar_programCreated()
     {
-        session()->flash('message', 'Pilar and Program created Successfully');
-        // session()->flash('message', 'misi Created Successfully ');
-
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Pilar and Program created Successfully',
+        ]);
     }
     
     #[On('pilar_programUpdated')]
     public function handlepilar_programUpdated()
     {
-        session()->flash('message', 'Pilar and Program updated Successfully');
-        // session()->flash('message', 'misi Created Successfully ');
-
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Pilar and Program updated Successfully',
+        ]);
     }
 
 

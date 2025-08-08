@@ -48,7 +48,7 @@ class Akun extends Component
 
         $user->save();
 
-        session()->flash('message', 'Profile updated successfully.');
+        $this->dispatch('updated', ['message' => 'Profile updated successfully.']);
     }
 
     public function render()

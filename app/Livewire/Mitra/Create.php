@@ -35,8 +35,14 @@ class Create extends Component
             'logo' => $path, // Simpan path gambar
         ]);
 
-        session()->flash('message', 'Mitra Created successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Mitra Created successfully.',
+        ]);
         return redirect()->to(url()->previous());
+
+        
 
     }
 

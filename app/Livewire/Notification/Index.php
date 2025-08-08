@@ -26,9 +26,13 @@ class Index extends Component
         $notification->update([
             'response' => $status
         ]);
-        session()->flash('message', $status);
-        session()->flash('message', $status);
+        session()->flash('swal', [
+            'type' => 'success', // Assuming 'success' for now, adjust based on $status
+            'title' => 'Notification Status',
+            'text' => $status,
+        ]);
         return redirect()->to(url()->previous());
+        
     }
     public function render()
     {

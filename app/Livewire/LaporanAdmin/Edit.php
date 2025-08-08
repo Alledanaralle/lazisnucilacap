@@ -55,11 +55,13 @@ class Edit extends Component
         // Save the changes
         $this->laporan->save();
 
-        // Reset the form inputs
-
-        // Dispatch the event for the updated image
-        session()->flash('message', 'Laporan updated successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Laporan updated successfully.',
+        ]);
         return redirect()->to(url()->previous());
+        
     }
 
     public function render()

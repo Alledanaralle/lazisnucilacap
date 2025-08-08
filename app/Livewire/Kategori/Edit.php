@@ -53,8 +53,9 @@ class Edit extends Component
         $this->kategori->save();
 
 
-        session()->flash('message', 'Kategori updated successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Kategori updated successfully.']);
         return redirect()->to(url()->previous());
+        
     }
     public function render()
     {

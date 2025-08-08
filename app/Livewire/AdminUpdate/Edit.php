@@ -53,8 +53,9 @@ class Edit extends Component
         }
 
         $update_campaign->save();
-        session()->flash('message', 'Campaign updated successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Campaign updated successfully.']);
         return redirect()->to(url()->previous());
+        
     }
 
     protected function uploadImage($image)

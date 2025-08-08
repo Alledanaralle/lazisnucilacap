@@ -45,7 +45,7 @@ class ForgotPassword extends Component
         Mail::to($this->email)->send(new SendEmail($data)); 
 
         // Success message
-        session()->flash('message', 'Password reset link sudah terkirim');
+        $this->dispatch('created', ['message' => 'Password reset link sudah terkirim']);
     }
 
     public function render()

@@ -122,8 +122,9 @@ class FormEdit extends Component
         }
 
         // Reset form dan dispatch event
-        session()->flash('message', 'Berita updated successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Berita updated successfully.']);
         return redirect()->to(url()->previous());
+        
     }
 
 

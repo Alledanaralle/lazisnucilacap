@@ -16,9 +16,10 @@ class Index extends Component
     #[On('pilihan_infaqUpdated')]
     public function handlepilihan_infaqEdited()
     {
-        // session()->flash('message', 'pilihan_infaq Updated Successfully');
-        session()->flash('message', 'Pilihan Infaq Updated Successfully');
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Pilihan Infaq Updated Successfully',
+        ]);
     }
 
     public function destroy($id)
@@ -26,8 +27,13 @@ class Index extends Component
         $pilihan_infaq = pilihan_infaq::find($id);
         // Hapus data pilihan_infaq
         $pilihan_infaq->delete();
-        session()->flash('message', 'Pilihan Infaq Deleted Successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Pilihan Infaq Deleted Successfully.',
+        ]);
         return redirect()->to(url()->previous());
+        
 
 
     }
@@ -35,9 +41,10 @@ class Index extends Component
     #[On('pilihan_infaqCreated')]
     public function handlepilihan_infaqCreated()
     {
-        // session()->flash('message', 'pilihan_infaq Created Successfully');
-        session()->flash('message', 'Pilihan Infaq Created Successfully');
-
+        $this->dispatch('swal:success', [
+            'title' => 'Success!',
+            'text' => 'Pilihan Infaq Created Successfully',
+        ]);
     }
 
     public function render()

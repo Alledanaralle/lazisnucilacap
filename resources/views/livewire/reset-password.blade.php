@@ -26,14 +26,6 @@
         <!-- If token is valid, show the reset password form -->
         <div class="flex flex-col w-full h-full md:w-[414px]">
             @if (Session::has('error'))
-                <div id="flash-message"
-                    class="flex items-center justify-between mx-4 p-4  mt-8 mb-4 text-white bg-red-500 rounded">
-                    <span>{{ session('error') }}</span>
-                    <button class="p-1" onclick="document.getElementById('flash-message').style.display='none'"
-                        class="font-bold text-white">
-                        &times;
-                    </button>
-                </div>
             @endif
             <form wire:submit.prevent="resetPassword" class="mx-2 mt-4">
                 <div class="mb-4">

@@ -17,9 +17,11 @@ class Index extends Component
     #[On('postUpdated')]
     public function handlePostEdited()
     {
-        // session()->flash('message', 'User Updated Successfully ');
-        session()->flash('message', 'User Updated Successfully');
-
+        $this->dispatch('swal:fire', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'User Updated Successfully',
+        ]);
     }
 
     public function destroy($id_user)
@@ -27,8 +29,13 @@ class Index extends Component
         $user = User::find($id_user);
         if ($user) {
             $user->delete();
-            session()->flash('message', 'User Deleted Successfully.');
+            session()->flash('swal', [
+                'type' => 'success',
+                'title' => 'Success!',
+                'text' => 'User Deleted Successfully.',
+            ]);
             return redirect()->to(url()->previous());
+            
         }
 
 
@@ -37,8 +44,11 @@ class Index extends Component
     #[On('postCreated')]
     public function handlePostCreated()
     {
-        session()->flash('message', 'User Created Successfully');
-
+        $this->dispatch('swal:fire', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'User Created Successfully',
+        ]);
     }
 
     public function render()

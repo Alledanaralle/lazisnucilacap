@@ -75,9 +75,15 @@ class Index extends Component
                 'jumlah_penerima' => $validatedData['jumlah_penerima'],
             ]);
     
-            session()->flash('message', 'Data pengajuan berhasil dibuat.');
+            $this->dispatch('swal:success', [
+                'title' => 'Success!',
+                'text' => 'Data pengajuan berhasil dibuat.',
+            ]);
         } catch (\Exception $e) {
-            session()->flash('error', 'Terjadi kesalahan saat membuat data pengajuan.');
+            $this->dispatch('swal:error', [
+                'title' => 'Error!',
+                'text' => 'Terjadi kesalahan saat membuat data pengajuan.',
+            ]);
         }
     
         $this->reset();

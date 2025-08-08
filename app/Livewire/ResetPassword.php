@@ -61,7 +61,7 @@ class ResetPassword extends Component
         ])->first();
 
         if (!$reset) {
-            session()->flash('error', 'Error dalam proses reset password, harap mencoba meminta reset password kembali.');
+            $this->dispatch('destroyed', ['message' => 'Error dalam proses reset password, harap mencoba meminta reset password kembali.']);
             return;
         }
 
@@ -73,7 +73,7 @@ class ResetPassword extends Component
         // Delete the password reset token
         DB::table('password_resets')->where('email', $this->email)->delete();
 
-        session()->flash('message', 'Password anda telahberhasil diganti.');
+        $this->dispatch('updated', ['message' => 'Password anda telahberhasil diganti.']);
 
         // Redirect or handle post-password reset actions
         return redirect()->to('/login'); // Or any other route

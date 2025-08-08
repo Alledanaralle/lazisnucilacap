@@ -28,8 +28,14 @@ class Create extends Component
             'order' => visi::max('order') + 1,
         ]);
 
-        session()->flash('message', 'Visi Created successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Visi Created successfully.',
+        ]);
         return redirect()->to(url()->previous());
+
+        
 
     }
     public function render()

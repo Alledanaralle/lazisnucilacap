@@ -101,8 +101,14 @@ class Edit extends Component
 
         $this->pilar_program->save();
 
-        session()->flash('message', 'Pilar Program updated successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Pilar Program updated successfully.',
+        ]);
         return redirect()->to(url()->previous());
+
+        
 
     }
 

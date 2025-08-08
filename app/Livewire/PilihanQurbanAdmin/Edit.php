@@ -84,9 +84,13 @@ class Edit extends Component
             ]);
         }
 
-        // Reset form dan dispatch event
-        session()->flash('message', 'Pilihan Qurban updated successfully.');
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Success!',
+            'text' => 'Pilihan Qurban updated successfully.',
+        ]);
         return redirect()->to(url()->previous());
+        
     }
 
     public function render()

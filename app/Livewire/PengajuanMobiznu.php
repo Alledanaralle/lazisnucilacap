@@ -119,7 +119,7 @@ class PengajuanMobiznu extends Component
     #[On('formCreated')]
     public function handleberitaCreated()
     {
-        session()->flash('message', 'Form Sukses Dikirim');
+        $this->dispatch('created', ['message' => 'Form Sukses Dikirim']);
     }
 
     public function render()

@@ -40,8 +40,9 @@ class Create extends Component
 
         ]);
         
-        session()->flash('message', 'Update Campaign Created successfully.');
+        session()->flash('swal', ['type' => 'success', 'title' => 'Success', 'text' => 'Update Campaign Created successfully.']);
         return redirect()->to(url()->previous());
+        
 
     }
     protected function uploadImage($image)

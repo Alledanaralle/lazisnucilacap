@@ -49,10 +49,10 @@ class Daftar extends Component
         ]);
 
         if ($user) {
-            session()->flash('success', 'Registrasi Berhasil');
+            $this->dispatch('created', ['message' => 'Registrasi Berhasil']);
             return redirect()->route('login');
         } else {
-            session()->flash('success', 'Registrasi Gagal');
+            $this->dispatch('destroyed', ['message' => 'Registrasi Gagal']);
 
         }
     }
