@@ -15,7 +15,7 @@
             <div class="flex items-center justify-between mt-2">
                 <div class="flex items-center">
                     <img src="{{ asset('images/icon_location.png') }}" alt="pinpoint" class="w-3 h-3">
-                    <p class="pl-1 text-[12px]  text-gray-600">{{ $campaign->lokasi }}</p>
+                    <p class="pl-1 text-[12px]  text-gray-600">{{ \Illuminate\Support\Str::limit($campaign->lokasi, 10, '...') }}</p>
                 </div>
                 <p class="pl-1 text-[10px] text-right text-green-600">{{ \Illuminate\Support\Str::limit($campaign->kategori->nama_kategori ?? '', 10, '...') }}</p>
 
