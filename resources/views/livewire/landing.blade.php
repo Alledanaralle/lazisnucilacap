@@ -82,13 +82,13 @@
     </div>
 
 
-    <div class="relative flex justify-center w-full -mt-6 z-12">
+    <div class="relative flex justify-center w-full mt-20 z-12">
         <div class="flex justify-center space-x-2 md:space-x-4 md:-mt-14">
             <!-- Item 1 -->
             <a
                 href="https://wa.me/{{ $petugas->no }}?text={{ urlencode('Assalamualaikum, saya ingin berkonsultasi mengenai zakat') }}">
                 <div
-                    class="flex flex-col items-center w-20 p-4 bg-white rounded-lg shadow-2xl sm:w-36 sm:h-36 md:w-48 md:h-44 h-[110px] border">
+                    class="flex flex-col items-center w-20 p-4 bg-white rounded-lg shadow-2xl sm:w-36 sm:h-36 md:w-48 md:h-44 h-[110px] border-2 border-slate-200">
                     <div class="p-4 bg-green-500 rounded-full">
                         <img src="{{ asset('images/konsultasi.png') }}" alt="Image 1"
                             class="w-6 h-4 md:p-1 sm:w-8 sm:h-8 md:w-16 md:h-16 lg:w-16 lg:h-16">
@@ -100,7 +100,7 @@
             <!-- Item 2 -->
             <a href="/zakat">
                 <div
-                    class="flex flex-col items-center w-20 p-4 bg-white rounded-lg shadow-2xl sm:w-36 sm:h-36 md:w-48 md:h-44 h-[110px] border">
+                    class="flex flex-col items-center w-20 p-4 bg-white rounded-lg shadow-2xl sm:w-36 sm:h-36 md:w-48 md:h-44 h-[110px] border-2 border-slate-200">
                     <div class="px-4 py-4 bg-green-500 rounded-full">
                         <img src="{{ asset('images/kalkulator.png
                         ') }}" alt="Image 2"
@@ -113,7 +113,7 @@
             <!-- Item 3 -->
             <a href="/rekening">
                 <div
-                    class="flex flex-col items-center w-20 p-4 bg-white rounded-lg shadow-2xl sm:w-36 sm:h-36 md:w-48 md:h-44 h-[110px] border">
+                    class="flex flex-col items-center w-20 p-4 bg-white rounded-lg shadow-2xl sm:w-36 sm:h-36 md:w-48 md:h-44 h-[110px] border-2 border-slate-200">
                     <div class="px-4 py-4 bg-green-500 rounded-full">
                         <img src="{{ asset('images/rekening.png') }}" alt="Image 3"
                             class="w-6 h-4 md:p-1 sm:w-8 sm:h-8 md:w-16 md:h-16 lg:w-16 lg:h-16">
@@ -124,7 +124,7 @@
 
             <!-- Item 4 -->
             <a href="/qr_donasi">
-                <div class="flex flex-col items-center w-20 p-4 bg-white rounded-lg shadow-2xl sm:w-36 sm:h-36 md:w-48 md:h-44 h-[110px] border">
+                <div class="flex flex-col items-center w-20 p-4 bg-white rounded-lg shadow-2xl sm:w-36 sm:h-36 md:w-48 md:h-44 h-[110px] border-2 border-slate-200">
                     <div class="px-4 py-4 bg-green-500 rounded-full">
                         <img src="{{ asset('images/qr.png') }}" alt="Image 4"
                             class="w-6 h-4 md:p-1 sm:w-8 sm:h-8 md:w-16 md:h-16 lg:w-16 lg:h-16">
