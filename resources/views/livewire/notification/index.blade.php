@@ -1,4 +1,4 @@
-<div class="mx-5 shadow-2xl">
+<div class="mx-5">
     <div class="flex justify-between mx-4 mt-12">
         <div class="flex justify-between w-full">
             <div>

@@ -5,7 +5,7 @@
             <!-- Kategori and Filter Buttons -->
             <div class="flex items-center justify-between">
                 <!-- Campaign Cards -->
-                <div class="flex grid items-center justify-center w-full h-auto grid-cols-1" wire:loading.remove>
+                <div class="grid place-items-center w-full h-auto grid-cols-1" wire:loading.remove>
                     <div class="z-5 flex flex-grow h-[100px] px-4 ">
                         <div
                             class="z-0 relative group flex justify-center items-center w-[220px] h-full overflow-hidden">

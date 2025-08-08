@@ -1,4 +1,4 @@
-<div class="mx-5 shadow-2xl">
+<div class="mx-5">
     <div class="flex flex-col items-center mx-4 mt-12 mb-16">
         <h1 class="w-full mb-4 text-2xl font-bold text-left">Komponen Ziswaf Table</h1>
         <div class="flex items-center justify-center w-full">

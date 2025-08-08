@@ -1,7 +1,7 @@
 <div x-data="{ isOpen: false }" @modal-closed.window="isOpen = false">
     <!-- Button to open the modal -->
     <button @click="isOpen=true"
-        class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+        class="bg-green-600 hover:bg-green-700 text-white mb-4 font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
         Create
     </button>
 

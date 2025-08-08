@@ -1,4 +1,4 @@
-<div class="mx-5 shadow-2xl">
+<div class="mx-5">
     <div class="flex justify-between mx-4 mt-12">
         <h1 class="text-2xl font-bold ">Konfirmasi Table</h1>
         <input type="text" wire:model.live="search" placeholder="   Search"
